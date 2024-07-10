@@ -1,26 +1,30 @@
 package team3.boogie.Test;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-@Controller
+@RestController
 public class TestController {
 
-    @PostMapping("/processForm")
-    public String processForm(@RequestParam Map<String,String> formData){
+    @PostMapping("/test")
+    public ResponseEntity<Boolean> processForm(@RequestParam Map<String,String> formData){
         int checkedCount =0;
+        boolean status= false;
         for(String key: formData.keySet()){
             if(formData.get(key) != null && formData.get(key).equals("on")){
                 checkedCount++;
             }
         }
-        if(checkedCount >= 3){
-            return "redirect:/page1";
+        if(checkedCount >= 4){
+            status = true;
+            return ResponseEntity.ok(status);
         }else{
-            return "redirect:/page2";
+            return ResponseEntity.ok(status);
         }
     }
 }

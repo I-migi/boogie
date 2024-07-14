@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>제목</th>
+        <th>내용</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="question : ${questionList}">
+        <td>
+            <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+        </td>
+        <td>
+            <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.content}"></a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/question/create}">질문 등록하기</a>
+</body>
+</html>

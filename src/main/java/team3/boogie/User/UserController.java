@@ -15,9 +15,12 @@ public class UserController {
     private HttpSession httpSession;
 
     @PostMapping("/addUser")
-    public void addUser(@ModelAttribute("user") User user){
+    public ResponseEntity<String> addUser(@ModelAttribute("user") User user){
         if(!userService.isUserExists(user.getLoginId())){
             userRepository.save(user);
+            return ResponseEntity.ok("User added successfully");
+        } else{
+            return ResponseEntity.badRequest().body("User already exists");
         }
     }
 
@@ -28,16 +31,18 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Boolean> login(@ModelAttribute("user")User user,HttpSession httpSession){
-        boolean isLogin = userService.loginService(user.getLoginId(),user.getPassword());
+    public ResponseEntity<Boolean> login(@RequestBody LoginRequest loginRequest,HttpSession httpSession){
+        boolean isLogin = userService.loginService(loginRequest.getLoginId(),loginRequest.getPassword());
         if(isLogin){
-            httpSession.setAttribute("loggedInUser",user.getName());
+            User user = userService.getUserByLoginId(loginRequest.getLoginId());
+            httpSession.setAttribute("loggedInUser",user);
         }
         return ResponseEntity.ok(isLogin);
     }
 
     @GetMapping("/logout")
-    public void logout(){
+    public ResponseEntity<String> logout(HttpSession httpSession){
         httpSession.removeAttribute("loggedInUser");
+        return ResponseEntity.ok("Logged out succesfully");
     }
 }

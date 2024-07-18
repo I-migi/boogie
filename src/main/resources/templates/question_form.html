@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+<div>
+    <h5>질문등록</h5>
+    <form th:action="@{/question/create}" th:object="${questionForm}" method="post">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        </div>
+        <div>
+            <label for="subject">제목</label>
+            <input type="text" th:field="*{subject}"  id="subject">
+        </div>
+        <div>
+            <label for="content">내용</label>
+            <textarea th:field="*{content}" id="content" rows="10"></textarea>
+        </div>
+        <input type="submit" value="저장하기">
+    </form>
+</div>
+</body>
+</html>

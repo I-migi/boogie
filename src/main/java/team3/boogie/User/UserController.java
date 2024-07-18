@@ -15,7 +15,7 @@ public class UserController {
     private HttpSession httpSession;
 
     @PostMapping("/addUser")
-    public ResponseEntity<String> addUser(@ModelAttribute("user") User user){
+    public ResponseEntity<String> addUser(@RequestBody User user){
         if(!userService.isUserExists(user.getLoginId())){
             userRepository.save(user);
             return ResponseEntity.ok("User added successfully");

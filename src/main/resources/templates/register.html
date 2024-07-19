@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+</head>
+<body>
+<h1>Register</h1>
+<form th:action="@{/addUser}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="loginId">Login ID:</label>
+        <input type="text" id="loginId" name="loginId" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">Register</button>
+</form>
+<div th:if="${param.error}">
+    <p style="color: red;">이미 존재하는 아이디입니다.</p>
+</div>
+<a th:href="@{/login}">계정이 있으시면, 로그인 해주세요</a>
+</body>
+</html>

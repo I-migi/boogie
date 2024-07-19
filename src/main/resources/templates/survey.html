@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Survey</title>
+</head>
+<body>
+<h1>Survey</h1>
+<form th:action="@{/test}" method="post">
+    <div>
+        <input type="checkbox" name="question1"> Question 1
+    </div>
+    <div>
+        <input type="checkbox" name="question2"> Question 2
+    </div>
+    <div>
+        <input type="checkbox" name="question3"> Question 3
+    </div>
+    <div>
+        <input type="checkbox" name="question4"> Question 4
+    </div>
+    <div>
+        <input type="checkbox" name="question5"> Question 5
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

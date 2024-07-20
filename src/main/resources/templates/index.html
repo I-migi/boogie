@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="/style.css">
 
   <title>Boogie Login</title>
 </head>
 
 <body>
   <div class="container">
-    <form id="form">
+    <form id="form" th:action="@{/login}" method="post">
 
       <div class="main-login"></div>
-      <img class="back" src="backimg.svg">
+      <img class="back" src="/backimg.svg">
 
       <div class="boogie">
         커뮤니케이션이 어려울 땐?
@@ -27,18 +27,21 @@
 
       <div class="line-1"></div>
 
-      <input class="id-rec" type="text" placeholder="아이디 입력">
-      <input class="pw-rec" type="password" placeholder="비밀번호 입력">
+      <input class="id-rec" type="text" name="loginId" placeholder="아이디 입력">
+      <input class="pw-rec" type="password" name="password" placeholder="비밀번호 입력">
 
       <button class="login-rec" type="submit">로그인</button>
+      <div th:if="${param.error}">
+        <p style="color: red;">아이디나 비밀번호가 틀립니다.</p>
+      </div>
 
       <div class="idSearch">아이디 찾기</div>
       <div class="pwSearch">비밀번호 찾기</div>
-      <div class="join">회원가입</div>
+      <a class="join" th:href="@{/register}">회원가입</a>
     </form>
   </div>
 
-  <script src="script.js"></script>
+<!--  <script src="/script.js"></script>-->
 </body>
 
 </html>

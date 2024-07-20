@@ -1,0 +1,193 @@
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+    .idSearch,
+    .pwSearch,
+    .join,
+    .boogie,
+    .id-rec,
+    .idInput,
+    .pw-rec,
+    .pwInput,
+    .login-rec,
+    .login,
+    .boogie-rec,
+    .boogieStart,
+    .line-1,
+    .back {
+      position: absolute;
+    }
+
+.container {
+  background: #d0d0d0;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1);
+  transform-origin: top left;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-login {
+  background: #ffffff;
+  width: 34.84vw;
+  height: 133.52vh;
+  position: absolute;
+  left: calc(50% - 17.42vw);
+  top: 0;
+}
+
+::placeholder {
+  font-size: 11px !important;
+  color: rgb(128, 128, 128);
+  position:absolute;
+}
+
+.back {
+  border-radius: 0;
+  width: 1.17vw;
+  height: 3.74vh;
+  left: 35.21vw;
+  top: 4.91vh;
+  cursor: pointer;
+  transition: all 0.3 ease;
+}
+
+
+.boogie {
+  color: #000000;
+  text-align: left;
+  font-family: "Pretendard-SemiBold", sans-serif;
+  font-size: 2.08vw;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  left: 35.21vw;
+  top: 25vh;
+}
+
+button.boogie-rec {
+  background: #00ba8d;
+  border:none;
+  border-radius: 0.59vw;
+  width: 29.63vw;
+  height: 11.39vh;
+  left: 35.16vw;
+  top: 38.5vh;
+  font-size: 25px !important;
+  color:white;
+  cursor: pointer;
+  transition: all 0.3 ease;
+}
+
+button.boogie-rec:hover {
+  box-shadow: inset 2px 2px 4px #bebebe, inset -2px -2px 4px #ffffff;
+}
+
+.line-1 {
+  margin-top: -0.1vh;
+  border-style: solid;
+  border-color: #f5f5f5;
+  border-width: 0.10vh 0 0 0;
+  width: 34.84vw;
+  height: 0;
+  left: 32.57vw;
+  top: 55vh;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+
+.id-rec {
+  background: #ffffff;
+  border-radius: 0.59vw;
+  border-style: solid;
+  border-color: #d8d8d8;
+  border-width: 1px;
+  width: 29.63vw;
+  height: 7.50vh;
+  left: 35.16vw;
+  top: 60.04vh;
+}
+
+.pw-rec {
+  background: #ffffff;
+  border-radius: 0.59vw;
+  border-style: solid;
+  border-color: #d8d8d8;
+  border-width: 1px;
+  width: 29.63vw;
+  height: 7.50vh;
+  left: 35.16vw;
+  top: 69.44vh;
+}
+
+.login-rec {
+  background: #afafaf;
+  border:none;
+  border-radius: 0.59vw;
+  width: 29.63vw;
+  height: 7.50vh;
+  left: 35.16vw;
+  top: 78.89vh;
+  font-size: 15px;
+  color:white;
+  cursor: pointer;
+  transition: all 0.3 ease;
+}
+
+.login-rec:hover {
+  box-shadow: inset 2px 2px 4px #bebebe, inset -2px -2px 4px #ffffff;
+}
+
+.idSearch {
+  color: #6b6b6b;
+  text-align: left;
+  font-family: "Pretendard-Regular", sans-serif;
+  font-size: 1.04vw;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  left: 41vw;
+  top: 90vh;
+  cursor: pointer;
+  transition: all 0.3 ease;
+}
+
+.pwSearch {
+  color: #6b6b6b;
+  text-align: left;
+  font-family: "Pretendard-Regular", sans-serif;
+  font-size: 1.04vw;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  left: 47.81vw;
+  top: 90vh;
+  cursor: pointer;
+  transition: all 0.3 ease;
+}
+
+.join {
+  color: #6b6b6b;
+  text-align: left;
+  font-family: "Pretendard-Regular", sans-serif;
+  font-size: 1.04vw;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  left: 55.52vw;
+  top: 90vh;
+  cursor: pointer;
+  transition: all 0.3 ease;
+}

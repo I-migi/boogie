@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<h1>Welcome, <span th:text="${user.name}"></span>!</h1>
+<p>You are logged in with login ID: <span th:text="${user.loginId}"></span></p>
+<a th:href="@{/survey}">Take the Survey</a>
+<a th:href="@{/logout}">Logout</a>
+<a th:href="@{/register}">Register</a>
+<a th:href="@{/question/list}">Go to Board</a> <!-- 홈 페이지에서 게시판 페이지로 이동 -->
+</body>
+</html>

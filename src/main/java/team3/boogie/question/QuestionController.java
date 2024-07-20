@@ -27,8 +27,8 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class QuestionController {
     private final QuestionService questionService;
-    private final UserService UserService;
-    private HttpSession httpSession;
+    private final UserService userService;
+    private final HttpSession httpSession;
 
     @GetMapping("/list")
     public String list(Model model) {
@@ -54,12 +54,19 @@ public class QuestionController {
         if (bindingResult.hasErrors()) {
             return "question_form";
         }
-        String loginId = (String) httpSession.getAttribute("loggedInUser");
-        if (loginId == null) {
-            return "redirect:/user/login"; // 로그인 페이지로 리다이렉트
-        }
 
-        User author = UserService.getUserByLoginId(loginId);
+        // HttpSession에서 'loggedInUser' 속성을 가져옵니다. 여기서는 User 객체가 저장되어 있어야 합니다.
+        User loggedInUser = (User) httpSession.getAttribute("loggedInUser");
+
+        // 세션에서 User 객체가 없으면 로그인 페이지로 리다이렉트합니다.
+        if (loggedInUser == null) {
+            return "redirect:/user/login";
+        }
+        // User 객체에서 loginId를 직접 가져옵니다.
+        String loginId = loggedInUser.getLoginId();
+
+        User author = userService.getUserByLoginId(loginId);
+
         this.questionService.create(questionForm.getSubject(), questionForm.getContent(), author);
         return "redirect:/question/list";
     }

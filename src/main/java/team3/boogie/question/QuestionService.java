@@ -38,4 +38,14 @@ public class QuestionService {
         q.setAuthor(author);
         this.questionRepository.save(q);
     }
+//추천인을 저장
+    public void vote(Question question, User loggedInUser) {
+        question.getVoter().add(loggedInUser);
+        this.questionRepository.save(question);
+    }
+    //비추천
+    public void downvote(Question question, User loggedInUser) {
+        question.getNonVoter().add(loggedInUser);
+        this.questionRepository.save(question);
+    }
 }

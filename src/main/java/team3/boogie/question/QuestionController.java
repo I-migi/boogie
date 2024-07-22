@@ -70,4 +70,34 @@ public class QuestionController {
         this.questionService.create(questionForm.getSubject(), questionForm.getContent(), author);
         return "redirect:/question/list";
     }
+
+    //추천처리
+    @GetMapping("/vote/{id}")
+    public String questionVote(HttpSession session, @PathVariable("id") Integer id) {
+
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+
+        if (loggedInUser == null) {
+            // 로그인되지 않은 경우 로그인 페이지로 리디렉션
+            return "redirect:/login";
+        }
+        Question question = this.questionService.getQuestion(id);
+        this.questionService.vote(question, loggedInUser);
+        return String.format("redirect:/question/detail/%s", id);
+    }
+
+    //비추천처리
+    @GetMapping("/downvote/{id}")
+    public String questionDownVote(HttpSession session, @PathVariable("id") Integer id) {
+
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+
+        if (loggedInUser == null) {
+            // 로그인되지 않은 경우 로그인 페이지로 리디렉션
+            return "redirect:/login";
+        }
+        Question question = this.questionService.getQuestion(id);
+        this.questionService.downvote(question, loggedInUser);
+        return String.format("redirect:/question/detail/%s", id);
+    }
 }

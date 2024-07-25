@@ -9,9 +9,9 @@
 <body>
 <div>
     <h5>질문등록</h5>
-    <form th:action="@{/question/create}" th:object="${questionForm}" method="post">
+    <form th:object="${questionForm}" method="post">
         <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         </div>
         <div>
             <label for="subject">제목</label>

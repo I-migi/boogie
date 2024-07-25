@@ -7,6 +7,13 @@
 
 </head>
 <body>
+
+    <label for="sort"> 정렬기준</label>
+    <select id="sort" onchange="location = this.value;">
+        <option value="?sort=date" th:selected="${param.sort == 'date'}">최신순</option>
+        <option value="?sort=vote" th:selected="${param.sort == 'vote'}">추천순</option>
+    </select>
+
 <table>
     <thead>
     <tr>

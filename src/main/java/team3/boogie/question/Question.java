@@ -18,6 +18,8 @@ import team3.boogie.answer.Answer;
 
 import jakarta.persistence.ManyToOne;
 import team3.boogie.User.User;
+import java.util.Set;
+import jakarta.persistence.ManyToMany;
 
 @Getter
 @Setter
@@ -40,4 +42,10 @@ public class Question {
 
     @ManyToOne
     private User author;
+
+    @ManyToMany
+    Set<User> voter;
+
+    @ManyToMany
+    private Set<User> nonVoter;  // 비추천한 사용자들
 }

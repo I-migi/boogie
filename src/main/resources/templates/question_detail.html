@@ -12,6 +12,10 @@
 </div>
 <h1 th:text="${question.subject}"></h1>
 <div th:text="${question.content}"></div>
+<!-- 수정 버튼 -->
+<a th:href="@{|/question/modify/${question.id}|}"
+   th:if="${question.author != null and loggedInUser != null and loggedInUser.loginId == question.author.loginId}"
+   th:text="수정"></a>
 
 <!-- 추천 버튼 -->
 <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
@@ -40,9 +44,7 @@
     <textarea th:field="*{content}" id="content" rows="15"></textarea>
     <input type="submit" value="답변등록">
 </form>
-<div th:if="${loggedInUser == question.author.loginId}">
-    <a th:href="@{'/question/edit/' + ${question.id}}">수정</a>
-</div>
+
 </body>
 
 <script layout:fragment="script" type='text/javascript'>

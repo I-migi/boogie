@@ -1,7 +1,9 @@
 package team3.boogie.question;
 
+import java.util.Comparator;
 import java.util.List;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -38,6 +40,14 @@ public class QuestionService {
         q.setAuthor(author);
         this.questionRepository.save(q);
     }
+    //수정
+    @Transactional
+    public void modify(Question question, String subject, String content) {
+        question.setSubject(subject);
+        question.setContent(content);
+        this.questionRepository.save(question);
+    }
+
 //추천인을 저장
     public void vote(Question question, User loggedInUser) {
         question.getVoter().add(loggedInUser);
@@ -47,5 +57,18 @@ public class QuestionService {
     public void downvote(Question question, User loggedInUser) {
         question.getNonVoter().add(loggedInUser);
         this.questionRepository.save(question);
+    }
+
+    //정렬
+    public List<Question> getListSortedByDate() {
+        List<Question> questions = this.questionRepository.findAll();
+        questions.sort(Comparator.comparing(Question::getCreateDate).reversed());
+        return questions;
+    }
+
+    public List<Question> getListSortedByVote() {
+        List<Question> questions = this.questionRepository.findAll();
+        questions.sort((q1, q2) -> q2.getVoter().size() - q1.getVoter().size());
+        return questions;
     }
 }

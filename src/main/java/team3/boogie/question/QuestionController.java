@@ -32,6 +32,10 @@ public class QuestionController {
         } else {
             questionList = this.questionService.getListSortedByDate();
         }
+
+        List<Question> top3Questions = this.questionService.getTop3QuestionsByVotes();
+        model.addAttribute("top3Questions", top3Questions);
+
         model.addAttribute("questionList", questionList);
         return "question_list";
     }

@@ -7,6 +7,12 @@
 
 </head>
 <body>
+<h2>실시간 인기글</h2>
+<ol>
+    <li th:each="question : ${top3Questions}">
+        <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a> </span>
+    </li>
+</ol>
 
     <label for="sort"> 정렬기준</label>
     <select id="sort" onchange="location = this.value;">
@@ -35,5 +41,6 @@
     </tbody>
 </table>
 <a th:href="@{/question/create}">질문 등록하기</a>
+<a th:href="@{/home}">Back to Home</a>
 </body>
 </html>

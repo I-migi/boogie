@@ -12,6 +12,8 @@ import java.util.Optional;
 import team3.boogie.DataNotFoundException;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
+
 import team3.boogie.User.User;
 
 @RequiredArgsConstructor
@@ -70,5 +72,12 @@ public class QuestionService {
         List<Question> questions = this.questionRepository.findAll();
         questions.sort((q1, q2) -> q2.getVoter().size() - q1.getVoter().size());
         return questions;
+    }
+    public List<Question> getTop3QuestionsByVotes() {
+        List<Question> questions = this.questionRepository.findAll();
+        return questions.stream()
+                .sorted((q1, q2) -> q2.getVoter().size() - q1.getVoter().size())
+                .limit(3)
+                .collect(Collectors.toList());
     }
 }

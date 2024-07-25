@@ -30,7 +30,7 @@ public class UserController {
         if (!userService.isUserExists(loginId)) {
             User user = new User(name, loginId, password);
             userRepository.save(user);
-            return "redirect:/login";
+            return "redirect:/";
         } else {
             return "redirect:/register?error";
         }

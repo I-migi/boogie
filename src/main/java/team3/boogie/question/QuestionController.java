@@ -50,6 +50,7 @@ public class QuestionController {
 
         return "question_detail";
     }
+
     // 글 수정 페이지로 이동
     @GetMapping("/modify/{id}")
     public String questionModify(@PathVariable("id") Integer id, QuestionForm questionForm, HttpSession session) {
@@ -65,32 +66,32 @@ public class QuestionController {
         questionForm.setContent(question.getContent());
         return "question_form";
     }
-// 글 수정 처리
-@PostMapping("/modify/{id}")
-public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult, HttpSession session, @PathVariable("id") Integer id) {
-    if (bindingResult.hasErrors()) {
-        return "question_form";
+
+    // 글 수정 처리
+    @PostMapping("/modify/{id}")
+    public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult, HttpSession session, @PathVariable("id") Integer id) {
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+
+        if (loggedInUser == null) {
+            // 로그인되지 않은 경우 로그인 페이지로 리디렉션
+            return "redirect:/login";
+        }
+
+        Question question = this.questionService.getQuestion(id);
+
+        // 현재 로그인한 사용자가 글쓴이인지 확인합니다.
+        if (!question.getAuthor().getId().equals(loggedInUser.getId())) {
+            // 글쓴이가 아니면 접근 금지
+            return "redirect:/question/detail/" + id;
+        }
+
+        this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
+        return String.format("redirect:/question/detail/%s", id);
     }
-
-    User loggedInUser = (User) session.getAttribute("loggedInUser");
-
-    if (loggedInUser == null) {
-        // 로그인되지 않은 경우 로그인 페이지로 리디렉션
-        return "redirect:/login";
-    }
-
-    Question question = this.questionService.getQuestion(id);
-
-    // 현재 로그인한 사용자가 글쓴이인지 확인합니다.
-    if (!question.getAuthor().getId().equals(loggedInUser.getId())) {
-        // 글쓴이가 아니면 접근 금지
-        return "redirect:/question/detail/" + id;
-    }
-
-    this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
-    return String.format("redirect:/question/detail/%s", id);
-}
-
 
     @GetMapping("/create")
     public String questionCreate(QuestionForm questionForm) {
@@ -148,6 +149,16 @@ public String questionModify(@Valid QuestionForm questionForm, BindingResult bin
         return String.format("redirect:/question/detail/%s", id);
     }
 
-    //정렬
+    @GetMapping("/answer")
+    public String questionAnswer() {
+        return "question_answer";
+    }
 
+    // 홈 페이지에 Top 3 Questions 제공
+    @GetMapping("/home")
+    public String home(Model model) {
+        List<Question> top3Questions = this.questionService.getTop3QuestionsByVotes();
+        model.addAttribute("top3Questions", top3Questions);
+        return "home";
+    }
 }

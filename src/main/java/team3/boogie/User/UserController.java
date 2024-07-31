@@ -47,16 +47,16 @@ public class UserController {
             return "redirect:/login?error";
         }
     }
-
-    @GetMapping("/home")
-    public String showHomePage(HttpSession httpSession, Model model) {
-        User loggedInUser = (User) httpSession.getAttribute("loggedInUser");
-        if (loggedInUser == null) {
-            return "redirect:/login";
-        }
-        model.addAttribute("user", loggedInUser);
-        return "home";
-    }
+//이 부분 QuestionController로 옯겼어요 /home이 겹쳐서
+//    @GetMapping("/home")
+//    public String showHomePage(HttpSession httpSession, Model model) {
+//        User loggedInUser = (User) httpSession.getAttribute("loggedInUser");
+//        if (loggedInUser == null) {
+//            return "redirect:/login";
+//        }
+//        model.addAttribute("user", loggedInUser);
+//        return "home";
+//    }
 
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {

@@ -16,7 +16,7 @@ import team3.boogie.User.UserService;
 import team3.boogie.answer.AnswerForm;
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/question")
+
 @RequiredArgsConstructor
 @Controller
 public class QuestionController {
@@ -24,7 +24,7 @@ public class QuestionController {
     private final UserService userService;
     private final HttpSession httpSession;
 
-    @GetMapping("/list")
+    @GetMapping("/question/list")
     public String list(Model model, @RequestParam(name = "sort", required = false) String sort) {
         List<Question> questionList;
         if ("vote".equals(sort)) {
@@ -40,7 +40,7 @@ public class QuestionController {
         return "question_list";
     }
 
-    @GetMapping(value = "/detail/{id}")
+    @GetMapping(value = "/question/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm, HttpSession session) {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
@@ -52,7 +52,7 @@ public class QuestionController {
     }
 
     // 글 수정 페이지로 이동
-    @GetMapping("/modify/{id}")
+    @GetMapping("/question/modify/{id}")
     public String questionModify(@PathVariable("id") Integer id, QuestionForm questionForm, HttpSession session) {
         Question question = this.questionService.getQuestion(id);
 
@@ -68,7 +68,7 @@ public class QuestionController {
     }
 
     // 글 수정 처리
-    @PostMapping("/modify/{id}")
+    @PostMapping("/question/modify/{id}")
     public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult, HttpSession session, @PathVariable("id") Integer id) {
         if (bindingResult.hasErrors()) {
             return "question_form";
@@ -93,12 +93,12 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 
-    @GetMapping("/create")
+    @GetMapping("/question/create")
     public String questionCreate(QuestionForm questionForm) {
         return "question_form";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/question/create")
     public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "question_form";
@@ -120,7 +120,7 @@ public class QuestionController {
     }
 
     //추천처리
-    @GetMapping("/vote/{id}")
+    @GetMapping("/question/vote/{id}")
     public String questionVote(HttpSession session, @PathVariable("id") Integer id) {
 
         User loggedInUser = (User) session.getAttribute("loggedInUser");
@@ -135,7 +135,7 @@ public class QuestionController {
     }
 
     //비추천처리
-    @GetMapping("/downvote/{id}")
+    @GetMapping("/question/downvote/{id}")
     public String questionDownVote(HttpSession session, @PathVariable("id") Integer id) {
 
         User loggedInUser = (User) session.getAttribute("loggedInUser");
@@ -149,16 +149,24 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 
-    @GetMapping("/answer")
+    @GetMapping("/question/answer")
     public String questionAnswer() {
         return "question_answer";
     }
 
-    // 홈 페이지에 Top 3 Questions 제공
     @GetMapping("/home")
-    public String home(Model model) {
+    public String home(Model model, HttpSession session) {
+        // 실시간 인기글 추가
         List<Question> top3Questions = this.questionService.getTop3QuestionsByVotes();
         model.addAttribute("top3Questions", top3Questions);
+
+        // 사용자 정보 추가
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        if (loggedInUser == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("user", loggedInUser);
+
         return "home";
     }
 }

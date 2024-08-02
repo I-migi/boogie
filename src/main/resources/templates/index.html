@@ -1,47 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css" />
 
-  <title>Boogie Login</title>
+  <title>Boogie Register</title>
 </head>
 
 <body>
   <div class="container">
-    <form id="form" th:action="@{/login}" method="post">
+    <form class="form">
 
-      <div class="main-login"></div>
-      <img class="back" src="/backimg.svg">
+    <div class="main-register"></div>
+    <img class="back" src="img/backimg.svg" />
 
-      <div class="boogie">
-        커뮤니케이션이 어려울 땐?
-        <br>
-        부기(Boogie)를 시작하세요!
-      </div>
+    <div class="text-register">회원가입</div>
+      
+    <div class="input1">
+    <input id="username" type="text" placeholder="이름 또는 닉네임">
+    </div>
+                
+    <div class="input2">
+    <input id="userid" type="text" placeholder="아이디">
+    </div>
 
-      <button class="boogie-rec" type="button"
-              th:onclick="|window.location='@{/register}'|">1분 안에 부기 시작하기</button>
-      <div class="line-1"></div>
+    <div class="input3">  
+    <input id="password" type="password" placeholder="비밀번호">
+    </div>
 
-      <input class="id-rec" type="text" name="loginId" placeholder="아이디 입력">
-      <input class="pw-rec" type="password" name="password" placeholder="비밀번호 입력">
+    <div class="input4">
+    <input id= "password2" type="password" placeholder="비밀번호 확인">
+    </div>
 
-      <button class="login-rec" type="submit">로그인</button>
-      <div th:if="${param.error}">
-        <p style="color: red;">아이디나 비밀번호가 틀립니다.</p>
-      </div>
+    <div class="button2">
+    <button class="joinEnd" type="submit">회원가입 완료하기</button>
+    </div>
 
-      <div class="idSearch">아이디 찾기</div>
-      <div class="pwSearch">비밀번호 찾기</div>
-      <a class="join" th:href="@{/register}">회원가입</a>
+    <div class="button1">
+    <button class="overlapCheck" type="button">중복확인</button>
+    </div>
+        
+    
     </form>
   </div>
-
-<!--  <script src="/script.js"></script>-->
 </body>
 
 </html>

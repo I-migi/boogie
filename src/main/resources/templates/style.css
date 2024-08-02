@@ -1,0 +1,185 @@
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: #d0d0d0;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1);
+  transform-origin: top left;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-register {
+  background: #ffffff;
+  width: 34.84vw;
+  height: 133.52vh;
+  position: absolute;
+  left: calc(50% - 17.42vw);
+  top: 0;
+}
+
+.back {
+  border-radius: 0;
+  width: 1.17vw;
+  height: 3.74vh;
+  position:absolute;
+  top: 4.91vh;
+  left: 35.21vw;
+  cursor: pointer;
+  transition: all 0.3 ease;
+}
+
+.text-register {
+  color: #000000;
+  text-align: left;
+  font-family: "Pretendard-SemiBold", sans-serif;
+  font-size: 2.08vw;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  left: 35.21vw;
+  top: 25vh;
+  position:absolute;
+}
+
+#username {
+  background: #ffffff;
+  border-radius: 0.59vw;
+  border-style: solid;
+  border-color: #d8d8d8;
+  border-width: 1px;
+  width: 29.63vw;
+  height: 7.50vh;
+  left: 35.16vw;
+  top: 38.5vh;
+  position:absolute;
+  ::placeholder {
+    font-size: 11px !important;
+    color: rgb(128,128,128);
+    position:absolute;
+  }
+}
+
+#userid {
+  background: #ffffff;
+  border-radius: 0.59vw;
+  border-style: solid;
+  border-color: #d8d8d8;
+  border-width: 1px;
+  width: 29.63vw;
+  height: 7.50vh;
+  left: 35.16vw;
+  top: 47.9vh;
+  position:absolute;
+  ::placeholder {
+    font-size: 11px !important;
+    color: rgb(128,128,128);
+    position:absolute;
+  }
+}
+
+#password {
+  background: #ffffff;
+  border-radius: 0.59vw;
+  border-style: solid;
+  border-color: #d8d8d8;
+  border-width: 1px;
+  width: 29.63vw;
+  height: 7.50vh;
+  left: 35.16vw;
+  top: 57.3vh;
+  position:absolute;
+  ::placeholder {
+    font-size: 11px !important;
+    color: rgb(128,128,128);
+    position:absolute;
+  }
+}
+
+#password2 {
+  background: #ffffff;
+  border-radius: 0.59vw;
+  border-style: solid;
+  border-color: #d8d8d8;
+  border-width: 1px;
+  width: 29.63vw;
+  height: 7.50vh;
+  left: 35.16vw;
+  top: 66.7vh;
+  position:absolute;
+  ::placeholder {
+    font-size: 11px !important;
+    color: rgb(128,128,128);
+    position:absolute;
+  }
+}
+
+.joinEnd {
+  background: #00ba8d;
+  border:none;
+  border-radius: 0.59vw;
+  width: 29.63vw;
+  height: 7.50vh;
+  left: 35.16vw;
+  top: 78.89vh;
+  font-size: 15px;
+  color:white;
+  cursor: pointer;
+  transition: all 0.3 ease;
+  position:absolute;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.overlapCheck {
+  background: #ffffff;
+  border-style: solid;
+  border-radius: 1vw;
+  border-color: #00ba8d;
+  width: 6vw;
+  height: 3.5vh;
+  left: 57vw;
+  top: 50.1vh;
+  font-size: 15px;
+  color: #00ba8d;
+  cursor: pointer;
+  transition: all 0.3 ease;
+  position:absolute;
+  font-size: 13px;
+}
+  
+button.joinEnd:hover {
+      box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+
+button.overlapCheck:hover {
+  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+  
+@media screen and (min-width:1980px) {
+    .container {
+      width: 650px;
+    } 
+    .button1 {
+      width: auto;
+    }
+    .button2 {
+      width: auto;
+    }  
+} 

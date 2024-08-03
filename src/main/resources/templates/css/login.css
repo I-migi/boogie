@@ -9,22 +9,31 @@ html {
   align-items: center;
 }
 
-    .idSearch,
-    .pwSearch,
-    .join,
-    .boogie,
-    .id-rec,
-    .idInput,
-    .pw-rec,
-    .pwInput,
-    .login-rec,
-    .login,
-    .boogie-rec,
-    .boogieStart,
-    .line-1,
-    .back {
-      position: absolute;
-    }
+.idSearch,
+.pwSearch,
+.join,
+.boogie,
+.id-rec,
+.idInput,
+.pw-rec,
+.pwInput,
+.login-rec,
+.login,
+.boogie-rec,
+.boogieStart,
+.line-1,
+.back,
+.error-message {
+  position: absolute;
+}
+
+.error-message {
+  color: red;
+  font-size: 1rem;
+  margin-top: 1rem;
+  left: 35.16vw; /* 로그인 버튼과 같은 수평 위치 */
+  top: 85vh; /* 로그인 버튼 아래 */
+}
 
 .container {
   background: #d0d0d0;
@@ -55,7 +64,7 @@ form {
 ::placeholder {
   font-size: 11px !important;
   color: rgb(128, 128, 128);
-  position:absolute;
+  position: absolute;
 }
 
 .back {
@@ -67,7 +76,6 @@ form {
   cursor: pointer;
   transition: all 0.3 ease;
 }
-
 
 .boogie {
   color: #000000;
@@ -82,14 +90,14 @@ form {
 
 button.boogie-rec {
   background: #00ba8d;
-  border:none;
+  border: none;
   border-radius: 0.59vw;
   width: 29.63vw;
   height: 11.39vh;
   left: 35.16vw;
   top: 38.5vh;
   font-size: 25px !important;
-  color:white;
+  color: white;
   cursor: pointer;
   transition: all 0.3 ease;
 }
@@ -137,14 +145,14 @@ button.boogie-rec:hover {
 
 .login-rec {
   background: #afafaf;
-  border:none;
+  border: none;
   border-radius: 0.59vw;
   width: 29.63vw;
   height: 7.50vh;
   left: 35.16vw;
   top: 78.89vh;
   font-size: 15px;
-  color:white;
+  color: white;
   cursor: pointer;
   transition: all 0.3 ease;
 }

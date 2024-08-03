@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping("/aaa")
     public String home(){
-        return "index";
+        return "html/login";
     }
 }
 

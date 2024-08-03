@@ -17,12 +17,12 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLoginPage() {
-        return "login";
+        return "html/login";
     }
 
     @GetMapping("/register")
     public String showRegisterPage() {
-        return "register";
+        return "html/register";
     }
 
     @PostMapping("/addUser")
@@ -30,9 +30,9 @@ public class UserController {
         if (!userService.isUserExists(loginId)) {
             User user = new User(name, loginId, password);
             userRepository.save(user);
-            return "redirect:/";
+            return "redirect:html/EndRegister";
         } else {
-            return "redirect:/register?error";
+            return "redirect:html/register?error";
         }
     }
 
@@ -42,9 +42,9 @@ public class UserController {
         if (isLogin) {
             User user = userService.getUserByLoginId(loginId);
             httpSession.setAttribute("loggedInUser", user);
-            return "redirect:/home";
+            return "redirect:html/mainPage";
         } else {
-            return "redirect:/login?error";
+            return "redirect:html/login?error";
         }
     }
 //이 부분 QuestionController로 옯겼어요 /home이 겹쳐서
@@ -61,6 +61,6 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         httpSession.removeAttribute("loggedInUser");
-        return "redirect:/login";
+        return "redirect:html/login";
     }
 }

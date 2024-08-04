@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/login.css}">
+
+  <title>Boogie Login</title>
+</head>
+
+<body>
+<div class="container">
+  <form th:action="@{/login}" method="post" id="form">
+
+    <div class="main-login"></div>
+    <img class="back" th:src="@{/img/backimg.svg}">
+
+    <div class="boogie">
+      커뮤니케이션이 어려울 땐?
+      <br>
+      부기(Boogie)를 시작하세요!
+    </div>
+
+    <button class="boogie-rec" type="button" th:onclick="|window.location.href='@{/register}'|">1분 안에 부기 시작하기</button>
+
+    <div class="line-1"></div>
+
+    <input class="id-rec" type="text" name="loginId" placeholder="아이디 입력">
+    <input class="pw-rec" type="password" name="password" placeholder="비밀번호 입력">
+
+    <button class="login-rec" type="submit">로그인</button>
+
+    <div class="idSearch">아이디 찾기</div>
+    <div class="pwSearch">비밀번호 찾기</div>
+    <div class="join" th:onclick="|window.location.href='@{/register}'|">회원가입</div>
+
+    <!-- 에러 메시지 표시 -->
+    <div th:if="${error}" class="error-message">
+      <p th:text="${error}"></p>
+    </div>
+  </form>
+</div>
+</body>
+
+</html>

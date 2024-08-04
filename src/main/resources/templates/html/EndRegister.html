@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/EndRegister.css}" />
+
+  <title>Successful Join!</title>
+</head>
+
+<body>
+<div class="container">
+  <form class="form" th:action="@{/login}" method="get">
+
+    <div class="main-joinEnd"></div>
+    <img class="back" th:src="@{/img/back.svg}">
+    <img class="check" th:src="@{/img/check.svg}">
+
+    <div class="join-success">회원가입이 완료되었습니다</div>
+    <div class="letsGo">부기와 함께 여러분의<br>
+      고민을 해결해볼까요?</div>
+
+    <div class="button2">
+      <button class="joinEnd" type="submit">로그인 하러 가기</button>
+    </div>
+
+  </form>
+</div>
+</body>
+
+</html>

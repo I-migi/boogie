@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>안녕하세요 <span th:text="${user.name}"></span>님!</h1>
+<p>오늘은 어떤 일이 있었나요? <span th:text="${user.loginId}"></span></p>
+<a th:href="@{/question/answer}">글쓰기 조언하기</a> <!-- 홈 페이지에서 게시판 페이지로 이동 -->
+<a th:href="@{/survey}">Take the Survey</a>
+
+<h2>실시간 인기글</h2>
+<ol>
+    <li th:each="question : ${top3Questions}">
+        <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+    </li>
+</ol>
+
+
+<a th:href="@{/logout}">Logout</a>
+
+</body>
+</html>

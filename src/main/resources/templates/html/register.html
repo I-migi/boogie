@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/register.css}">
+
+  <title>Boogie Register</title>
+</head>
+
+<body>
+<div class="container">
+  <form class="form" id="registerForm" th:action="@{/addUser}" method="post" onsubmit="return validateForm()">
+    <div class="main-register"></div>
+    <img class="back" th:src="@{/img/backimg.svg}" />
+
+    <div class="text-register">회원가입</div>
+
+    <div class="input1">
+      <input id="username" name="name" type="text" placeholder="이름 또는 닉네임">
+    </div>
+
+    <div class="input2">
+      <input id="userid" name="loginId" type="text" placeholder="아이디">
+      <button class="overlapCheck" type="button" onclick="checkDuplicate()">중복확인</button>
+    </div>
+
+    <div class="input3">
+      <input id="password" name="password" type="password" placeholder="비밀번호">
+    </div>
+
+    <div class="input4">
+      <input id="password2" name="password2" type="password" placeholder="비밀번호 확인">
+    </div>
+
+    <div class="button2">
+      <button class="joinEnd" type="submit">회원가입 완료하기</button>
+    </div>
+  </form>
+
+  <!-- 에러 메시지 표시 -->
+  <div th:if="${error}" class="error-message">
+    <p th:text="${error}"></p>
+  </div>
+
+  <!-- 중복확인 결과 표시 -->
+  <div id="duplicate-check-result" class="duplicate-check-result"></div>
+</div>
+
+<script>
+  let isDuplicateChecked = false;
+
+  function checkDuplicate() {
+    const loginId = document.getElementById('userid').value;
+    fetch(`/checkDuplicate?loginId=${loginId}`)
+            .then(response => response.json())
+            .then(data => {
+              const resultDiv = document.getElementById('duplicate-check-result');
+              if (data.exists) {
+                alert('이미 존재하는 아이디입니다.');
+                isDuplicateChecked = false;
+              } else {
+                alert('사용 가능한 아이디입니다.');
+                isDuplicateChecked = true;
+              }
+            })
+            .catch(error => console.error('Error:', error));
+  }
+
+  function validateForm() {
+    if (!isDuplicateChecked) {
+      alert('아이디 중복을 확인해주세요.');
+      return false;
+    }
+    return true;
+  }
+</script>
+</body>
+
+</html>

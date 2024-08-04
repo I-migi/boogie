@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+<a th:href="@{/question/list}">Back to QuestionList</a>
+
+<div>
+    <span th:if="${question.author != null}" th:text="${question.author.loginId}"></span>
+</div>
+<h1 th:text="${question.subject}"></h1>
+<div th:text="${question.content}"></div>
+<!-- 수정 버튼 -->
+<a th:href="@{|/question/modify/${question.id}|}"
+   th:if="${question.author != null and loggedInUser != null and loggedInUser.loginId == question.author.loginId}"
+   th:text="수정"></a>
+<!--좋아요 수-->
+<span th:text="${#lists.size(question.voter)}"></span>
+<!--답변 수-->
+<h5 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+
+<!-- 추천 버튼 -->
+<a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+   th:data-uri="@{|/question/vote/${question.id}|}">
+    good
+    <span th:text="${#lists.size(question.voter)}"></span>
+</a>
+
+<!-- 비추천 버튼 -->
+<a href="javascript:void(0);" class="downvote btn btn-sm btn-outline-danger"
+   th:data-uri="@{|/question/downvote/${question.id}|}">
+    bad
+    <span th:text="${#lists.size(question.nonVoter)}"></span>
+</a>
+
+
+<div>
+    <ul>
+        <li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li>
+    </ul>
+</div>
+
+
+</body>
+
+<script layout:fragment="script" type='text/javascript'>
+    const delete_elements = document.getElementsByClassName("delete");
+    Array.from(delete_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            if(confirm("정말로 삭제하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+    const recommend_elements = document.getElementsByClassName("recommend");
+    Array.from(recommend_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            if(confirm("정말로 추천하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+    //비추천
+    const downvote_elements = document.getElementsByClassName("downvote");
+    Array.from(downvote_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            if(confirm("정말로 비추천하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+</script>
+</html>

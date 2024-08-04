@@ -1,0 +1,230 @@
+body {
+    margin: 0;
+    background-color: #d0d0d0;
+    font-family: 'Pretendard', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.nav-container {
+    width: 150px;
+    height: 485px;
+    position: fixed;
+    top: 50%;
+    left: 285px;
+    transform: translateY(-50%);
+    gap: 0px;
+    background: #FFFFFF;
+    border: 2px solid #F5F5F5;
+    border-radius: 15px 0px 0px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-icon {
+    width: 57px;
+    height: 57px;
+    border-radius: 6.61px;
+    cursor: pointer;
+}
+
+.nav-text {
+    font-size: 12px;
+    color: #B1B1B1;
+    text-align: center;
+}
+
+.main-container {
+    width: 1920px;
+    height: 1125px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-screen {
+    width: 38.84vw;
+    height: 1723px;
+    background-color: #ffffff;
+    position: relative;
+}
+
+.back {
+    width: 1.17vw;
+    height: 3.74vh;
+    position: relative;
+    top: 4.91vh;
+    left: 3vw;
+    cursor: pointer;
+    transition: all 0.3 ease;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile-icon {
+    width: 100px;
+    height: 100px;
+    background: #d0d0d0;
+    border-radius: 50%;
+    position: relative;
+    top: 50px;
+    left: 16vw;
+    opacity: 0px;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 10px;
+    position:relative;
+    top:60px;
+}
+
+.mini-box {
+    width: 500px;
+    height: 100px;
+    position: absolute;
+    top: 250px;
+    left: 15px;
+    border-radius: 16.83px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.my-temperature {
+    font-size: 20px;
+    font-weight:500;
+    top : 10px;
+    left : 40px;
+    position:absolute;
+    letter-spacing: -0.035em;
+    text-align: left;
+}
+
+.temperature {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    text-align: left;
+    position: absolute;
+    top: 10px;
+    right: 40px;
+}
+
+.temperature-bar {
+    width: 320.39px;
+    height: 26.55px;
+    background: linear-gradient(90deg, #8FFF00 0%, #00BA8D 73.48%);
+    border-radius: 116.83px;
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    right: 40px;
+}
+
+.section {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    padding: 20px;
+    position:relative;
+    top: 215px;
+    border-radius: 16.83px;
+    width: 500px;
+    left: 15px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.section-edit {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #c4c4c4;
+    cursor: pointer;
+    position: absolute;
+    right: 100px;
+}
+
+.section-more {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #c4c4c4;
+    cursor: pointer;
+    position:absolute;
+    right: 25px;
+}
+
+.checkbox-list {
+    margin-top: 20px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-item input {
+    display: none;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    background: #DBDBDB;
+    border-radius: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-item input:checked + .checkbox-custom {
+    background: #00BA8D;
+}
+
+.checkbox-label {
+    font-size: 16px;
+    color: #707070;
+}
+
+.quest-description {
+    font-size: 16px;
+    color: #c4c4c4;
+    margin-top: 5px;
+}

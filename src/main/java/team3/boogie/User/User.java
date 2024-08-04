@@ -1,6 +1,7 @@
 package team3.boogie.User;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -15,19 +16,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
-    @Column
+
+    @Column(nullable = false)
     private String name;
 
-    @NonNull
-    @Column(unique = true)
+
+    @Column(nullable = false, unique = true)
     private String loginId;
 
-    @NonNull
-    @Column
+    @Column(nullable = false)
     private String password;
 
-    public User(@NonNull String name, @NonNull String loginId, @NonNull String password) {
+    @Builder
+    public User(String name, String loginId, String password) {
         this.name = name;
         this.loginId = loginId;
         this.password = password;

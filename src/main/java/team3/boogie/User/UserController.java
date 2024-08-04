@@ -27,7 +27,12 @@ public class UserController {
     }
 
     @GetMapping("/mainPage")
-    public String mainPage() {
+    public String mainPage(Model model, HttpSession session) {
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        if(loggedInUser == null) {
+            throw new RuntimeException("잘못된 접근입니다");
+        }
+        model.addAttribute("loggedInUser",loggedInUser);
         return "html/mainPage";
     }
 

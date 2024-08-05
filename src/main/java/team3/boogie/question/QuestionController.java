@@ -123,10 +123,9 @@ public class QuestionController {
         return "redirect:/question/list";
     }
 
-    //추천처리
+    // 추천 처리
     @GetMapping("/question/vote/{id}")
     public String questionVote(HttpSession session, @PathVariable("id") Integer id) {
-
         User loggedInUser = (User) session.getAttribute("loggedInUser");
 
         if (loggedInUser == null) {
@@ -138,10 +137,9 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 
-    //비추천처리
+    // 비추천 처리
     @GetMapping("/question/downvote/{id}")
     public String questionDownVote(HttpSession session, @PathVariable("id") Integer id) {
-
         User loggedInUser = (User) session.getAttribute("loggedInUser");
 
         if (loggedInUser == null) {

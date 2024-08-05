@@ -4,47 +4,72 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" th:href="@{/css/question_detail.css}">
+    <title>Boogie question</title>
 </head>
+
 <body>
-<a th:href="@{/question/list}">Back to QuestionList</a>
+    <div class="container">
 
-<div>
-    <span th:if="${question.author != null}" th:text="${question.author.loginId}"></span>
-</div>
-<h1 th:text="${question.subject}"></h1>
-<div th:text="${question.content}"></div>
+            <div class="main-login"></div>
 
-<!--좋아요 수-->
-<span th:text="${#lists.size(question.voter)}">개의 좋아요</span>
-<!--답변 수-->
-<h5 th:text="|${#lists.size(question.answerList)}개의 답변|"></h5>
+            <a class="backButton" th:href="@{/question/list}">
+                <img class="back" src="/backimg.svg">
+            </a>
 
+            <div class="userName">
+                <span th:if="${question.author != null}" th:text="${question.author.loginId}"></span>
+            </div>
 
-<!-- 추천 버튼 -->
-<a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
-      th:data-uri="@{|/question/vote/${question.id}|}">
-    good
-    <span th:text="${#lists.size(question.voter)}"></span>
-</a>
-
-<!-- 비추천 버튼 -->
-<a href="javascript:void(0);" class="downvote btn btn-sm btn-outline-danger"
-   th:data-uri="@{|/question/downvote/${question.id}|}">
-    bad
-    <span th:text="${#lists.size(question.nonVoter)}"></span>
-</a>
+            <div class="contentsContainer">
+                <h1 th:text="${question.subject}"></h1>
+                <h6 th:text="${question.content}"></h6>
 
 
+                <!--좋아요 수-->
+                <span class="good">♥</span>
+                <span class="good" th:text="${#lists.size(question.voter)}"></span>
+                <!--답변 수-->
+                <span class="good"><img class="good" src="/question-answer.svg"></span>
+            </div>
 
-<form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post">
-    <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-        <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+            <!-- 추천 버튼 -->
+            <button class="goodButton">
+                <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+                   th:data-uri="@{|/question/vote/${question.id}|}">
+                    good
+                    <br>
+                    <span th:text="${#lists.size(question.voter)}"></span>
+                </a>
+            </button>
+
+        <!-- 비추천 버튼 -->
+            <button class="goodButton" style="left:52vw;">
+                <a href="javascript:void(0);" class="downvote btn btn-sm btn-outline-danger"
+               th:data-uri="@{|/question/downvote/${question.id}|}">
+                bad
+                <br>
+                <span th:text="${#lists.size(question.nonVoter)}"></span>
+                </a>
+            </button>
+
+
+
+            <h3>조언하기</h3>
+            <form class="answerInput" th:action="@{/answer/create/{id}(id=${question.id})}" th:object="${answerForm}" method="post">
+
+                <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                    <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+                </div>
+
+                <textarea th:field="*{content}" id="content" rows="15"></textarea>
+
+                <button type="submit" class="login-rec" style="background: #00ba8d;">답변 등록</button>
+
+            </form>
+
+
     </div>
-    <textarea th:field="*{content}" id="content" rows="15"></textarea>
-    <input type="submit" value="답변등록">
-</form>
-
 </body>
 
 <script layout:fragment="script" type='text/javascript'>

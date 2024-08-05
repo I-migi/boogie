@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,12 +38,12 @@
                 <p class="page-title">경계성 지능장애 자가진단</p>
                 <p class="page-title2">해당되는 연령대를 선택해주세요</p>
                 <div class="options">
-                    <button class="option option-toddlers">
+                    <a th:href="@{/survey/Infant}" class="option option-toddlers">
                         <p class="option-title">영유아기</p>
-                    </button>
-                    <button class="option option-schoolage">
+                    </a>
+                    <a th:href="@{/survey/child}" class="option option-schoolage">
                         <p class="option-title">아동/학령기</p>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

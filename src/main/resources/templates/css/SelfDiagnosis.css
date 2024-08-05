@@ -160,6 +160,14 @@ button.option-schoolage:hover {
     box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
 }
 
+a.option-toddlers:hover {
+    box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+
+a.option-schoolage:hover {
+    box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+
 .option-title {
     font-size: 22.8px;
     font-weight: 500;

@@ -10,9 +10,19 @@ import java.util.Map;
 @Controller
 public class TestController {
 
+	@GetMapping("/survey/child")
+	public String childForm() {
+		return "html/SelfDiagnosisChild";
+	}
+
+	@GetMapping("/survey/Infant")
+	public String InfantForm() {
+		return "html/SelfDiagnosisInfant";
+	}
+
 	@GetMapping("/survey")
 	public String showSurveyPage() {
-		return "survey"; // 설문조사 페이지 렌더링
+		return "html/SelfDiagnosis"; // 설문조사 페이지 렌더링
 	}
 
 	@PostMapping("/test")

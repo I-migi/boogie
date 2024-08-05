@@ -10,12 +10,22 @@ import java.util.Map;
 @Controller
 public class TestController {
 
-	@GetMapping("/survey")
-	public String showSurveyPage() {
-		return "survey"; // 설문조사 페이지 렌더링
+	@GetMapping("/survey/child")
+	public String childForm() {
+		return "html/SelfDiagnosisChild";
 	}
 
-	@PostMapping("/test")
+	@GetMapping("/survey/Infant")
+	public String InfantForm() {
+		return "html/SelfDiagnosisInfant";
+	}
+
+	@GetMapping("/survey")
+	public String showSurveyPage() {
+		return "html/SelfDiagnosis"; // 설문조사 페이지 렌더링
+	}
+
+	@PostMapping("/survey")
 	public String processForm(@RequestParam Map<String, String> formData) {
 		int checkedCount = 0;
 
@@ -35,11 +45,11 @@ public class TestController {
 
 	@GetMapping("/resultA")
 	public String showResultAPage() {
-		return "resultA"; // A 결과 페이지 렌더링
+		return "html/SelfDiagnosisResult"; // A 결과 페이지 렌더링
 	}
 
 	@GetMapping("/resultB")
 	public String showResultBPage() {
-		return "resultB"; // B 결과 페이지 렌더링
+		return "html/SelfDiagnosisResult2"; // B 결과 페이지 렌더링
 	}
 }

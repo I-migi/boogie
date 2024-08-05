@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+    background-color: #d0d0d0;
+    font-family: 'Pretendard', sans-serif;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.nav-container {
+    width: 150px;
+    height: 485px;
+    position: fixed;
+    top: 50%;
+    left: 285px;
+    transform: translateY(-50%);
+    gap: 0px;
+    background: #FFFFFF;
+    border: 2px solid #F5F5F5;
+    border-radius: 15px 0px 0px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-icon {
+    width: 57px;
+    height: 57px;
+    border-radius: 6.61px;
+    cursor: pointer;
+}
+
+.nav-text {
+    font-size: 12px;
+    color: #B1B1B1;
+    text-align: center;
+}
+
+.main-container {
+    width: 1920px;
+    height: 1723px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-screen {
+    width: 38.84vw;
+    height: 1723px;
+    background-color: #ffffff;
+    position: relative;
+    left:-8px;
+}
+
+.back {
+    width: 1.17vw;
+    height: 3.74vh;
+    position: relative;
+    top: 4.91vh;
+    left: 3vw;
+    cursor: pointer;
+    transition: all 0.3 ease;
+}
+
+.result-content {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.result-icon {
+    width: 122px;
+    height: 62px;
+}
+
+.result-title {
+    font-size: 25px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 20px;
+}
+
+.result-description {
+    font-size: 18px;
+    font-weight: 400;
+    color: #d0d0d0;
+    margin-top: 10px;
+}
+
+.nearby-center {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.nearby-title {
+    width: 35%;
+    left: 168px;
+    padding: 15px;
+    background: #ffffff;
+    color: black;
+    border: none;
+    border-radius: 80px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    top: 400px;
+    position:absolute;
+    border: 80px;
+    border: 1.27px solid #C4C4C480
+}
+
+.center-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.center-img {
+    width: 400px;
+    height: 250px;
+    border-radius: 10px;
+    position:absolute;
+    top: 475px;
+}

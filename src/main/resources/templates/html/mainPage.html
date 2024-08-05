@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +47,7 @@
     <div class="gray-space"></div>
     <div class="box box2">
         <p class="hoxi">혹시 나도 경계성 지능인?<br>전문의와 함께 상담해보세요.</p>
-        <button class="self-diagnosis-btn" type="button">자가진단 실시하기</button>
+        <a th:href="@{/survey}" class="self-diagnosis-btn" type="button">자가진단 실시하기</a>
         <img src="../img/thinking_woman.png" alt="Thinking Woman" class="thinking-woman">
     </div>
     <div class="gray-space"></div>

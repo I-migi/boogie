@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아동, 학령기 자가진단</title>
+    <link rel="stylesheet" href="../css/SelfDiagnosisChild.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="nav-container">
+        <div class="nav">
+            <div class="nav-item">
+                <img src="../img/home.png" alt="Home" class="nav-icon" style="background: #00BA8D;">
+                <p class="nav-text">메인홈</p>
+            </div>
+            <div class="nav-item">
+                <img src="../img/dvr.png" alt="DVR" class="nav-icon" style="background: rgb(190, 190, 190);">
+                <p class="nav-text">게시판</p>
+            </div>
+            <div class="nav-item">
+                <img src="../img/create.png" alt="Create" class="nav-icon" style="background: rgb(190, 190, 190);">
+                <p class="nav-text">글쓰기</p>
+            </div>
+            <div class="nav-item">
+                <img src="../img/check.png" alt="Check" class="nav-icon" style="background: rgb(190, 190, 190);">
+                <p class="nav-text">자가진단</p>
+            </div>
+            <div class="nav-item">
+                <img src="../img/person.png" alt="Person" class="nav-icon" style="background: rgb(190, 190, 190);">
+                <p class="nav-text">마이페이지</p>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="main-screen">
+            <a href="#" th:href="@{/mainPage}">
+                <img class="back" src="../img/backimg.svg" alt="Back">
+            </a>            <p class="page-title">경계선 지능장애 자가진단</p>
+            <p class="page-title2">해당되는 문항에 체크표시 하세요</p>
+
+            <!-- Thymeleaf Form -->
+            <form action="#" th:action="@{/survey}" method="post">
+                <div class="dropdown-container">
+                    <select class="dropdown-button" name="ageGroup">
+                        <option value="아동/학령기">아동/학령기</option>
+                        <option value="영유아기">영유아기</option>
+                    </select>
+                </div>
+                <div class="checkbox-container">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="question1" value="on" class="checkbox">
+                        학교에서 주어진 과제를 완수하는 데 어려움을 겪는다.
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="question2" value="on" class="checkbox">
+                        친구들 간에 상호작용 문제와 갈등이 자주 일어난다.
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="question3" value="on" class="checkbox">
+                        어린 시절 언어발달지연이나 학습장애 문제가 있었다.
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="question4" value="on" class="checkbox">
+                        발음이 부정확하고 자신의 생각을 명확하게 표현하지 못한다.
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="question5" value="on" class="checkbox">
+                        또래보다도 동생들과 어울리기를 선호한다.
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="question6" value="on" class="checkbox">
+                        지시사항을 이해하지 못하고, 잘 잊어버린다.
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="question7" value="on" class="checkbox">
+                        문제점을 풀거나 공부를 할 때 자주 실수가 반복된다.
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="question8" value="on" class="checkbox">
+                        행동이 느리거나 지나치게 급한 모습을 보인다.
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="question9" value="on" class="checkbox">
+                        어릴 적 좋아하던 물건에 집착을 보인다.
+                    </label>
+                </div>
+                <button class="back-button" type="button" onclick="window.history.back()">뒤로가기</button>
+                <button class="submit-button" type="submit">자가진단 결과 확인하기</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

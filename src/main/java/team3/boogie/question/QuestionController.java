@@ -24,8 +24,8 @@ public class QuestionController {
     private final UserService userService;
     private final HttpSession httpSession;
 
-    @GetMapping("/question/list")
-    public String list(Model model, @RequestParam(name = "sort", required = false) String sort) {
+    @GetMapping("/popularPosts")
+    public String popularPosts(Model model, @RequestParam(name = "sort", required = false) String sort) {
         List<Question> questionList;
         if ("vote".equals(sort)) {
             questionList = this.questionService.getListSortedByVote();
@@ -37,7 +37,7 @@ public class QuestionController {
         model.addAttribute("top3Questions", top3Questions);
 
         model.addAttribute("questionList", questionList);
-        return "question_list";
+        return "html/PopularPost";
     }
 
     @GetMapping(value = "/question/detail/{id}")
@@ -49,9 +49,9 @@ public class QuestionController {
         model.addAttribute("loggedInUser", loggedInUser);
 
         if (loggedInUser != null && loggedInUser.getId().equals(question.getAuthor().getId())) {
-            return "question_detail_login";
+            return "html/question_detail_login";
         } else {
-            return "question_detail";
+            return "html/question_detail";
         }
     }
 
@@ -68,14 +68,14 @@ public class QuestionController {
 
         questionForm.setSubject(question.getSubject());
         questionForm.setContent(question.getContent());
-        return "question_form";
+        return "html/question_form";
     }
 
     // 글 수정 처리
     @PostMapping("/question/modify/{id}")
     public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult, HttpSession session, @PathVariable("id") Integer id) {
         if (bindingResult.hasErrors()) {
-            return "question_form";
+            return "html/question_form";
         }
 
         User loggedInUser = (User) session.getAttribute("loggedInUser");
@@ -99,13 +99,13 @@ public class QuestionController {
 
     @GetMapping("/question/create")
     public String questionCreate(QuestionForm questionForm) {
-        return "question_form";
+        return "html/question_form";
     }
 
     @PostMapping("/question/create")
     public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "question_form";
+            return "html/question_form";
         }
 
         // HttpSession에서 'loggedInUser' 속성을 가져옵니다. 여기서는 User 객체가 저장되어 있어야 합니다.
@@ -120,7 +120,7 @@ public class QuestionController {
         User author = userService.getUserByLoginId(loginId);
 
         this.questionService.create(questionForm.getSubject(), questionForm.getContent(), author);
-        return "redirect:/question/list";
+        return "redirect:html/question/list";
     }
 
     // 추천 처리
@@ -151,24 +151,26 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 
-    @GetMapping("/question/answer")
-    public String questionAnswer() {
-        return "question_answer";
+    @GetMapping("/WriteAdvise")
+    public String WriteAdvise() {
+        return "html/WriteAdvise";
     }
 
-    @GetMapping("/home")
-    public String home(Model model, HttpSession session) {
+    @GetMapping("/mainPage")
+    public String mainPage(Model model, HttpSession session) {
+        // 사용자 정보 확인
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        if (loggedInUser == null) {
+            throw new RuntimeException("잘못된 접근입니다");
+        }
+        model.addAttribute("loggedInUser", loggedInUser);
+
         // 실시간 인기글 추가
         List<Question> top3Questions = this.questionService.getTop3QuestionsByVotes();
         model.addAttribute("top3Questions", top3Questions);
 
-        // 사용자 정보 추가
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        if (loggedInUser == null) {
-            return "redirect:/login";
-        }
-        model.addAttribute("user", loggedInUser);
-
-        return "home";
+        return "html/mainPage";
     }
+
+
 }

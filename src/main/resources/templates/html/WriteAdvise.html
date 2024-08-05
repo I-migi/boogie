@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글쓰기/조언하기</title>
-    <link rel="stylesheet" href="../css/WriteAdvise.css">
+    <link rel="stylesheet" th:href="@{/css/WriteAdvise.css}" />
 </head>
 <body>
     <div class="wrapper">
@@ -34,15 +34,20 @@
         </div>
         <div class="main-container">
             <div class="main-screen">
-                <img class="back" src="../img/backimg.svg">
+
+
+                <a class="backButton" th:href="@{/mainPage}">
+                    <img class="back" src="/backimg.svg">
+                </a>
+
                 <p class="page-title">원하는 방식을 선택해주세요</p>
                 <div class="options">
-                    <button class="option option-write">
+                    <button class="option option-write" th:onclick="|window.location.href='@{/question/create}'|">
                         <img src="../img/create.png" alt="Write Icon" class="option-icon write-icon">
                         <p class="option-title">글쓰기</p>
                         <p class="option-description">여러분의 고민을 부기가 들어줄게요</p>
                     </button>
-                    <button class="option option-advice">
+                    <button class="option option-advice" th:onclick="|window.location.href='@{/popularPosts}'|">
                         <img src="../img/create.png" alt="Advice Icon" class="option-icon advice-icon">
                         <p class="option-title">조언하기</p>
                         <p class="option-description">다른 사람의 고민에 힘이 되어주세요!</p>
@@ -51,5 +56,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>

@@ -26,15 +26,15 @@ public class UserController {
         return "html/login";
     }
 
-    @GetMapping("/mainPage")
-    public String mainPage(Model model, HttpSession session) {
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        if(loggedInUser == null) {
-            throw new RuntimeException("잘못된 접근입니다");
-        }
-        model.addAttribute("loggedInUser",loggedInUser);
-        return "html/mainPage";
-    }
+//    @GetMapping("/mainPage")
+//    public String mainPage(Model model, HttpSession session) {
+//        User loggedInUser = (User) session.getAttribute("loggedInUser");
+//        if(loggedInUser == null) {
+//            throw new RuntimeException("잘못된 접근입니다");
+//        }
+//        model.addAttribute("loggedInUser",loggedInUser);
+//        return "html/mainPage";
+//    }
 
     @GetMapping("/register")
     public String showRegisterPage(Model model, @RequestParam(required = false) String error) {

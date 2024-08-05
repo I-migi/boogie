@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boog!e</title>
-    <link rel="stylesheet" href="../css/mainPage.css">
+    <link rel="stylesheet" th:href="@{/css/mainPage.css}">
 </head>
 <body>
 
@@ -42,7 +42,7 @@
             <p class="temperature">65℃</p>
             <div class="temperature-bar"></div>
         </div>
-        <button class="post-btn" type="button">글쓰기/조언하기</button>
+        <button class="post-btn" type="button" th:onclick="|window.location.href='@{/WriteAdvise}'|">글쓰기/조언하기</button>
     </div>
     <div class="gray-space"></div>
     <div class="box box2">
@@ -55,17 +55,21 @@
         <p class="hot-post">실시간 인기글</p>
         <p class="sub-text1">가장 HOT한 게시글들을 모았어요</p>
         <div class="post-list">
+            <div th:each="question, iterStat : ${top3Questions}">
             <div class="post-item">
-                <div class="rank">1</div>
-                <p class="post-title">제 잘못인지 궁금합니다.</p>
+                <div class="rank" th:text="${iterStat.index + 1}"></div>
+                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}" class="post-title"></a>
+<!--                <p class="post-title">제 잘못인지 궁금합니다.</p>-->
+<!--            </div>-->
+<!--            <div class="post-item">-->
+<!--                <div class="rank">2</div>-->
+<!--                <p class="post-title">이런 상황에선 어떻게 해야하나요?</p>-->
+<!--            </div>-->
+<!--            <div class="post-item">-->
+<!--                <div class="rank">3</div>-->
+<!--                <p class="post-title">여러분들의 생각을 알려주세요.</p>-->
+
             </div>
-            <div class="post-item">
-                <div class="rank">2</div>
-                <p class="post-title">이런 상황에선 어떻게 해야하나요?</p>
-            </div>
-            <div class="post-item">
-                <div class="rank">3</div>
-                <p class="post-title">여러분들의 생각을 알려주세요.</p>
             </div>
         </div>
         <p class="more-btn">더보기</p>

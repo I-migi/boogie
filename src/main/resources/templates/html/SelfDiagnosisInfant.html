@@ -7,80 +7,85 @@
     <link rel="stylesheet" href="../css/SelfDiagnosisInfant.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="nav-container">
-            <div class="nav">
-                <div class="nav-item">
-                    <img src="../img/home.png" alt="Home" class="nav-icon" style="background: #00BA8D;">
-                    <p class="nav-text">메인홈</p>
-                </div>
-                <div class="nav-item">
-                    <img src="../img/dvr.png" alt="DVR" class="nav-icon" style="background: rgb(190, 190, 190);">
-                    <p class="nav-text">게시판</p>
-                </div>
-                <div class="nav-item">
-                    <img src="../img/create.png" alt="Create" class="nav-icon" style="background: rgb(190, 190, 190);">
-                    <p class="nav-text">글쓰기</p>
-                </div>
-                <div class="nav-item">
-                    <img src="../img/check.png" alt="Check" class="nav-icon" style="background: rgb(190, 190, 190);">
-                    <p class="nav-text">자가진단</p>
-                </div>
-                <div class="nav-item">
-                    <img src="../img/person.png" alt="Person" class="nav-icon" style="background: rgb(190, 190, 190);">
-                    <p class="nav-text">마이페이지</p>
-                </div>
+<div class="wrapper">
+    <div class="nav-container">
+        <div class="nav">
+            <div class="nav-item">
+                <img src="../img/home.png" alt="Home" class="nav-icon" style="background: #00BA8D;">
+                <p class="nav-text">메인홈</p>
+            </div>
+            <div class="nav-item">
+                <img src="../img/dvr.png" alt="DVR" class="nav-icon" style="background: rgb(190, 190, 190);">
+                <p class="nav-text">게시판</p>
+            </div>
+            <div class="nav-item">
+                <img src="../img/create.png" alt="Create" class="nav-icon" style="background: rgb(190, 190, 190);">
+                <p class="nav-text">글쓰기</p>
+            </div>
+            <div class="nav-item">
+                <img src="../img/check.png" alt="Check" class="nav-icon" style="background: rgb(190, 190, 190);">
+                <p class="nav-text">자가진단</p>
+            </div>
+            <div class="nav-item">
+                <img src="../img/person.png" alt="Person" class="nav-icon" style="background: rgb(190, 190, 190);">
+                <p class="nav-text">마이페이지</p>
             </div>
         </div>
-        <div class="main-container">
-            <div class="main-screen">
-                <img class="back" src="../img/backimg.svg">
-                <p class="page-title">경계선 지능장애 자가진단</p>
-                <p class="page-title2">해당되는 문항에 체크표시 하세요</p>
+    </div>
+    <div class="main-container">
+        <div class="main-screen">
+            <a href="#" th:href="@{/mainPage}">
+                <img class="back" src="../img/backimg.svg" alt="Back">
+            </a>            <p class="page-title">경계선 지능장애 자가진단</p>
+            <p class="page-title2">해당되는 문항에 체크표시 하세요</p>
+
+            <!-- Thymeleaf Form -->
+            <form action="#" th:action="@{/survey}" method="post">
                 <div class="dropdown-container">
-                    <select class="dropdown-button">
-                        <option value="영유아기">영유아기</option>
+                    <select class="dropdown-button" name="ageGroup">
+                        <option value="영유아기" selected>영유아기</option>
                         <option value="아동/학령기">아동/학령기</option>
                     </select>
                 </div>
                 <div class="checkbox-container">
                     <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox">
+                        <input type="checkbox" name="question1" value="on" class="checkbox">
                         색칠하기, 가위질, 풀칠, 젓가락질, 단추 채우기 등 <br>
-                        세심한 소근육을 요하는 것들이 또래에 비해 서툴고  느리다.
+                        세심한 소근육을 요하는 것들이 또래에 비해 서툴고 느리다.
                     </label>
                     <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox">
+                        <input type="checkbox" name="question2" value="on" class="checkbox">
                         자신의 감정을 제대로 표현해야 하는 상황에서 <br>
                         말보다는 떼를 자주 쓴다.
                     </label>
                     <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox">
+                        <input type="checkbox" name="question3" value="on" class="checkbox">
                         이름을 부르거나 지시사항을 한 번에 듣지 않고, <br>
                         흘려 들어 엉뚱한 행동을 한다.
                     </label>
                     <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox">
+                        <input type="checkbox" name="question4" value="on" class="checkbox">
                         뛰기, 걷기, 던지기 등 대근육 동작이 어색하고 <br>
                         반복해도 자연스러워지는 데 시간이 걸린다.
                     </label>
                     <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox">
+                        <input type="checkbox" name="question5" value="on" class="checkbox">
                         과도하게 겁이 많거나 지나치게 겁이 없다.
                     </label>
                     <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox">
+                        <input type="checkbox" name="question6" value="on" class="checkbox">
                         쉽게 산만해지며 주의/집중력에 기복이 보인다.
                     </label>
                     <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox">
+                        <input type="checkbox" name="question7" value="on" class="checkbox">
                         글자, 단어 등을 여러 번 가르쳐 줘도 잘 기억하지 못한다.
                     </label>
                 </div>
-                <button class="back-button" type="button">뒤로가기</button>
-                <button class="submit-button" type="button">자가진단 결과 확인하기</button>
-            </div>
+                <button class="back-button" type="button" onclick="window.history.back()">뒤로가기</button>
+                <button class="submit-button" type="submit">자가진단 결과 확인하기</button>
+            </form>
         </div>
     </div>
+</div>
 </body>
 </html>

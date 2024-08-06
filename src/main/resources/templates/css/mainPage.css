@@ -5,6 +5,8 @@ body {
     background: #d0d0d0;
     position: relative;
     display: flex;
+    width: 100vw;
+    height: 100vh;
 }
 
 

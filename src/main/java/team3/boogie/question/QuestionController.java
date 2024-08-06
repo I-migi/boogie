@@ -16,7 +16,6 @@ import team3.boogie.User.UserService;
 import team3.boogie.answer.AnswerForm;
 import jakarta.servlet.http.HttpSession;
 
-
 @RequiredArgsConstructor
 @Controller
 public class QuestionController {
@@ -57,7 +56,7 @@ public class QuestionController {
 
     // 글 수정 페이지로 이동
     @GetMapping("/question/modify/{id}")
-    public String questionModify(@PathVariable("id") Integer id, QuestionForm questionForm, HttpSession session) {
+    public String questionModify(@PathVariable("id") Integer id, QuestionForm questionForm, HttpSession session, Model model) {
         Question question = this.questionService.getQuestion(id);
 
         User loggedInUser = (User) session.getAttribute("loggedInUser");
@@ -68,14 +67,17 @@ public class QuestionController {
 
         questionForm.setSubject(question.getSubject());
         questionForm.setContent(question.getContent());
-        return "html/question_form";
+
+        model.addAttribute("question", question);
+        model.addAttribute("loggedInUser", loggedInUser);
+        return "html/WritingPage";
     }
 
     // 글 수정 처리
     @PostMapping("/question/modify/{id}")
     public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult, HttpSession session, @PathVariable("id") Integer id) {
         if (bindingResult.hasErrors()) {
-            return "html/question_form";
+            return "html/WritingPage";
         }
 
         User loggedInUser = (User) session.getAttribute("loggedInUser");
@@ -97,15 +99,15 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 
-    @GetMapping("/question/create")
-    public String questionCreate(QuestionForm questionForm) {
-        return "html/question_form";
+    @GetMapping("/WritingPage")
+    public String WritingPage(QuestionForm questionForm) {
+        return "html/WritingPage";
     }
 
-    @PostMapping("/question/create")
-    public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+    @PostMapping("/WritingPage")
+    public String WritingPage(@Valid QuestionForm questionForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "html/question_form";
+            return "html/WritingPage";
         }
 
         // HttpSession에서 'loggedInUser' 속성을 가져옵니다. 여기서는 User 객체가 저장되어 있어야 합니다.
@@ -120,7 +122,7 @@ public class QuestionController {
         User author = userService.getUserByLoginId(loginId);
 
         this.questionService.create(questionForm.getSubject(), questionForm.getContent(), author);
-        return "redirect:html/question/list";
+        return "redirect:/question/list";
     }
 
     // 추천 처리
@@ -171,6 +173,4 @@ public class QuestionController {
 
         return "html/mainPage";
     }
-
-
 }

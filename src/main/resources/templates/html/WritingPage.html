@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글쓰기</title>
-    <link rel="stylesheet" href="../css/WritingPage.css">
+    <link rel="stylesheet" th:href="@{/css/WritingPage.css}"/>
 </head>
 <body>
     <div class="wrapper">
@@ -37,30 +37,42 @@
                 <img class="back" src="../img/backimg.svg">
                 <div class="profile">
                     <div class="profile-pic"></div>
-                    <p class="username">사용자1</p>
+                    <p class="username" th:if="${question.author != null}" th:text="${question.author.loginId}"></p>
                 </div>
-                <div class="divider"></div>
-                <div class="post-container">
-                    <textarea class="post-title" placeholder="제목을 입력하세요"></textarea>
-                    <div class="divider2"></div>
-                    <textarea class="post-content" placeholder="내용을 입력하세요"></textarea>
-                    <div class="divider3"></div>
-                    <div class="post-footer">
-                        <div class="footer-item">
-                            <img src="../img/timer.png" alt="Time" class="footer-icon">
-                            <p class="footer-text">1일전</p>
-                        </div>
-                        <div class="footer-item">
-                            <img src="../img/heart.png" alt="Likes" class="footer-icon">
-                            <p class="footer-text">128</p>
-                        </div>
-                        <div class="footer-item">
-                            <img src="../img/answer.png" alt="Comments" class="footer-icon">
-                            <p class="footer-text">45</p>
-                        </div>
+
+                <form th:object="${questionForm}" method="post">
+                    <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                        <div th:replace="~{form_errors :: formErrorsFragment}"></div>
                     </div>
-                </div>
-                <button class="post-btn" type="button">글쓰기</button>
+                    <div class="divider"></div>
+                    <div class="post-container">
+                            <textarea class="post-title" th:field="*{subject}" id="subject" placeholder="제목을 입력하세요"></textarea>
+
+                        <div class="divider2"></div>
+                            <textarea class="post-content" th:field="*{content}" id="content" rows="10" placeholder="내용을 입력하세요"></textarea>
+
+                        <div class="divider3"></div>
+                        <div class="post-footer">
+                            <div class="footer-item">
+                                <img src="../img/timer.png" alt="Time" class="footer-icon">
+                                <p class="footer-text">1일전</p>
+                            </div>
+                            <div class="footer-item">
+                                <img src="../img/heart.png" alt="Likes" class="footer-icon">
+                                <p class="footer-text">128</p>
+                            </div>
+                            <div class="footer-item">
+                                <img src="../img/answer.png" alt="Comments" class="footer-icon">
+                                <p class="footer-text">45</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="post-btn" >글쓰기</button>
+                </form>
+
+
             </div>
         </div>
     </div>

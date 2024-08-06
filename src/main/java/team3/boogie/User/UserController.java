@@ -90,4 +90,9 @@ public class UserController {
         response.put("exists", exists);
         return response;
     }
+
+    @GetMapping("/myPage")
+    public String myPageForm() {
+        return "html/MyPage";
+    }
 }

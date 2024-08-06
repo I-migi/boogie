@@ -28,7 +28,7 @@ public class AnswerController {
         // 질문 정보를 가져옵니다.
         Question question = this.questionService.getQuestion(id);
         if (question == null) {
-            return "redirect:/question/list";
+            return "redirect:/PopularPost";
         }
 
         // 사용자 정보 가져오기
@@ -40,9 +40,9 @@ public class AnswerController {
             model.addAttribute("loggedInUser", loggedInUser);
             // 로그인한 사용자 여부에 따라 다른 뷰를 반환합니다.
             if (loggedInUser != null && loggedInUser.getId().equals(question.getAuthor().getId())) {
-                return "question_detail_login";
+                return "html/OpenPostPage";
             } else {
-                return "question_detail";
+                return "html/OpenPostPage2";
             }
         }
 
@@ -50,6 +50,6 @@ public class AnswerController {
         this.answerService.create(question, answerForm.getContent());
 
         // 답변이 생성된 후 질문 상세 페이지로 리다이렉트
-        return String.format("redirect:/question/detail/%s", id);
+        return String.format("redirect:/OpenPostPage2/%s", id);
     }
 }

@@ -48,9 +48,9 @@ public class QuestionController {
         model.addAttribute("loggedInUser", loggedInUser);
 
         if (loggedInUser != null && loggedInUser.getId().equals(question.getAuthor().getId())) {
-            return "html/OpenPostPage2";
-        } else {
             return "html/OpenPostPage";
+        } else {
+            return "html/OpenPostPage2";
         }
     }
 
@@ -124,7 +124,7 @@ public class QuestionController {
         User author = userService.getUserByLoginId(loginId);
 
         this.questionService.create(questionForm.getSubject(), questionForm.getContent(), author);
-        return "redirect:/question/list";
+        return "redirect:/PopularPost";
     }
 
     // 추천 처리

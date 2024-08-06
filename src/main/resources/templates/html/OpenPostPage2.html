@@ -60,7 +60,7 @@
                         </div>
                         <div class="footer-item">
                             <img src="../img/answer.png" alt="Comments" class="footer-icon">
-                            <p class="footer-text">45</p>
+                            <p class="footer-text" th:text="${#lists.size(question.answerList)}"></p>
                         </div>
                     </div>
                 </div>

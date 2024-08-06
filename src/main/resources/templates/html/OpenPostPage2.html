@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 열람</title>
-    <link rel="stylesheet" href="../css/OpenPostPage2.css">
+    <link rel="stylesheet" th:href="@{/css/OpenPostPage2.css}"/>
 </head>
 <body>
     <div class="wrapper">
@@ -34,19 +34,19 @@
         </div>
         <div class="main-container">
             <div class="main-screen">
-                <img class="back" src="../img/backimg.svg">
+                <a th:href="@{/popularPosts}">
+                    <img class="back" src="../img/backimg.svg" alt="Back">
+                </a>
                 <div class="profile">
                     <div class="profile-pic"></div>
-                    <p class="username">사용자1</p>
+                    <p class="username" th:if="${question.author != null}" th:text="${question.author.loginId}"></p>
                 </div>
                 <div class="divider"></div>
                 <div class="post-container">
                     <div class="post-content">
-                        <p class="post-title">직장생활 꿀팁 있을까요?</p>
+                        <p class="post-title" th:text="${question.subject}"></p>
                     <div class="divider2"></div>
-                        <p class="post-body">안녕하세요. 제가 입사 준비를 하고 있습니다. 
-                        제가 아직 제대로 된 사회생활을 해본 적이 없어서 걱정됩니다.
-                        혹시 직장에 들어가서 챙길 수 있는 꿀팁이 있을까요?</p>
+                        <p class="post-body" th:text="${question.content}"></p>
                     </div>
                     <div class="divider3"></div>
                     <div class="post-footer">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="footer-item">
                             <img src="../img/heart.png" alt="Likes" class="footer-icon">
-                            <p class="footer-text">128</p>
+                            <p class="footer-text" th:text="${#lists.size(question.voter)}"></p>
                         </div>
                         <div class="footer-item">
                             <img src="../img/answer.png" alt="Comments" class="footer-icon">
@@ -67,24 +67,63 @@
                 <div class="vote-container">
                     <div class="vote-item good">
                         <img src="../img/good.png" alt="Good" class="vote-icon">
+                        <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary" th:data-uri="@{|/question/vote/${question.id}|}">
                         <p class="vote-text">Good</p>
-                        <p class="vote-count">148</p>
+                        <p class="vote-count" th:text="${#lists.size(question.voter)}"></p>
+                        </a>
                     </div>
                     <div class="vote-item bad">
                         <img src="../img/bad.png" alt="Bad" class="vote-icon2">
+                        <a href="javascript:void(0);" class="downvote btn btn-sm btn-outline-danger" th:data-uri="@{|/question/downvote/${question.id}|}">
                         <p class="vote-text">Bad</p>
-                        <p class="vote-count">32</p>
+                        <p class="vote-count" th:text="${#lists.size(question.nonVoter)}"></p>
+                        </a>
                     </div>
                 </div>
 
-                <div class="post-container2">
-                    <div class="post-title2">조언하기</div>
-                    <textarea class="post-content2" placeholder="작성자를 향한 비방 및 욕설은 무통보 삭제됩니다"></textarea>
-                    <button class="post-btn" type="button">조언하기</button>
+
+                <div class="post-title2">조언하기</div>
+                    <form class="post-container2" th:action="@{/answer/create/{id}(id=${question.id})}" th:object="${answerForm}"
+                          method="post">
+                    <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                        <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+                    </div>
+                    <textarea class="post-content2" th:field="*{content}" id="content" placeholder="작성자를 향한 비방 및 욕설은 무통보 삭제됩니다"></textarea>
+
+                    <button class="post-btn" type="submit">조언하기</button>
+                    </form>
+                    </div>
                 </div>
 
             </div>
         </div>
     </div>
 </body>
+<script layout:fragment="script" type='text/javascript'>
+    const delete_elements = document.getElementsByClassName("delete");
+    Array.from(delete_elements).forEach(function (element) {
+        element.addEventListener('click', function () {
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+    const recommend_elements = document.getElementsByClassName("recommend");
+    Array.from(recommend_elements).forEach(function (element) {
+        element.addEventListener('click', function () {
+            if (confirm("정말로 추천하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+    //비추천
+    const downvote_elements = document.getElementsByClassName("downvote");
+    Array.from(downvote_elements).forEach(function (element) {
+        element.addEventListener('click', function () {
+            if (confirm("정말로 비추천하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+</script>
 </html>

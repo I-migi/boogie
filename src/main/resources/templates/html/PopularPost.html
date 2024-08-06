@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>인기글 목록</title>
-    <link rel="stylesheet" href="../css/PopularPost.css">
+    <link rel="stylesheet" th:href="@{/css/PopularPost.css}"/>
 </head>
 <body>
     <div class="wrapper">
@@ -34,14 +34,18 @@
         </div>
         <div class="main-container">
             <div class="main-screen">
-                <img class="back" src="../img/backimg.svg">
+
+                <a th:href="@{/mainPage}">
+                    <img class="back" src="../img/backimg.svg" alt="Back">
+                </a>
+
                 <p class="page-title">실시간 인기글</p>
 
                 <div class="post-list">
                     <div th:each="question, iterStat : ${top3Questions}">
                         <div class="post-item">
                             <div class="rank" th:text="${iterStat.index + 1}"></div>
-                            <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}" class="post-title"></a>
+                            <a th:href="@{|/OpenPostPage2/${question.id}|}" th:text="${question.subject}" class="post-title"></a>
                         </div>
                     </div>
                 </div>
@@ -63,7 +67,7 @@
                     <div th:each="question : ${questionList}">
                         <div class="post-item2">
                             <p class="post-title2">
-                                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                                <a th:href="@{|/OpenPostPage2/${question.id}|}" th:text="${question.subject}"></a>
                             </p>
                             <p class="post-description2" th:text="${question.content}"></p>
                             <p class="post-info2">

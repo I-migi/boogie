@@ -39,8 +39,8 @@ public class QuestionController {
         return "html/PopularPost";
     }
 
-    @GetMapping(value = "/question/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm, HttpSession session) {
+    @GetMapping(value = "/OpenPostPage2/{id}")
+    public String OpenPostPage2(Model model, @PathVariable("id") Integer id, AnswerForm answerForm, HttpSession session) {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
 
@@ -48,9 +48,9 @@ public class QuestionController {
         model.addAttribute("loggedInUser", loggedInUser);
 
         if (loggedInUser != null && loggedInUser.getId().equals(question.getAuthor().getId())) {
-            return "html/question_detail_login";
+            return "html/OpenPostPage2";
         } else {
-            return "html/question_detail";
+            return "html/OpenPostPage";
         }
     }
 
@@ -62,7 +62,7 @@ public class QuestionController {
         User loggedInUser = (User) session.getAttribute("loggedInUser");
 
         if (loggedInUser == null || !loggedInUser.getLoginId().equals(question.getAuthor().getLoginId())) {
-            return "redirect:/question/detail/" + id;
+            return "redirect:/OpenPostPage2/" + id;
         }
 
         questionForm.setSubject(question.getSubject());
@@ -92,15 +92,17 @@ public class QuestionController {
         // 현재 로그인한 사용자가 글쓴이인지 확인합니다.
         if (!question.getAuthor().getId().equals(loggedInUser.getId())) {
             // 글쓴이가 아니면 접근 금지
-            return "redirect:/question/detail/" + id;
+            return "redirect:/OpenPostPage2/" + id;
         }
 
         this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
-        return String.format("redirect:/question/detail/%s", id);
+        return String.format("redirect:/OpenPostPage2/%s", id);
     }
 
     @GetMapping("/WritingPage")
-    public String WritingPage(QuestionForm questionForm) {
+    public String WritingPage(QuestionForm questionForm, HttpSession session, Model model) {
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        model.addAttribute("loggedInUser", loggedInUser);
         return "html/WritingPage";
     }
 
@@ -136,7 +138,7 @@ public class QuestionController {
         }
         Question question = this.questionService.getQuestion(id);
         this.questionService.vote(question, loggedInUser);
-        return String.format("redirect:/question/detail/%s", id);
+        return String.format("redirect:/OpenPostPage2/%s", id);
     }
 
     // 비추천 처리
@@ -150,7 +152,7 @@ public class QuestionController {
         }
         Question question = this.questionService.getQuestion(id);
         this.questionService.downvote(question, loggedInUser);
-        return String.format("redirect:/question/detail/%s", id);
+        return String.format("redirect:/OpenPostPage2/%s", id);
     }
 
     @GetMapping("/WriteAdvise")

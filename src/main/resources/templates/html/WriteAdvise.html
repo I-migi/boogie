@@ -36,17 +36,19 @@
             <div class="main-screen">
 
 
-                <a class="backButton" th:href="@{/mainPage}">
-                    <img class="back" src="/backimg.svg">
+                <a href="#" th:href="@{/mainPage}">
+                    <img class="back" src="../img/backimg.svg" alt="Back">
                 </a>
 
                 <p class="page-title">원하는 방식을 선택해주세요</p>
                 <div class="options">
-                    <button class="option option-write" th:onclick="|window.location.href='@{/WritingPage}'|">
+                    <a th:href="@{/WritingPage}">
+                    <button class="option option-write">
                         <img src="../img/create.png" alt="Write Icon" class="option-icon write-icon">
                         <p class="option-title">글쓰기</p>
                         <p class="option-description">여러분의 고민을 부기가 들어줄게요</p>
                     </button>
+                    </a>
                     <button class="option option-advice" th:onclick="|window.location.href='@{/popularPosts}'|">
                         <img src="../img/create.png" alt="Advice Icon" class="option-icon advice-icon">
                         <p class="option-title">조언하기</p>

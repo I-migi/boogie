@@ -58,7 +58,7 @@
             <div th:each="question, iterStat : ${top3Questions}">
             <div class="post-item">
                 <div class="rank" th:text="${iterStat.index + 1}"></div>
-                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}" class="post-title"></a>
+                <a th:href="@{|/OpenPostPage2/${question.id}|}" th:text="${question.subject}" class="post-title"></a>
 <!--                <p class="post-title">제 잘못인지 궁금합니다.</p>-->
 <!--            </div>-->
 <!--            <div class="post-item">-->

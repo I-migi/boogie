@@ -1,115 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 열람</title>
-    <link rel="stylesheet" href="../css/OpenPostPage.css">
+    <link rel="stylesheet" th:href="@{/css/OpenPostPage.css}"/>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="nav-container">
-            <div class="nav">
-                <div class="nav-item">
+<div class="wrapper">
+    <div class="nav-container">
+        <div class="nav">
+            <div class="nav-item">
+                <a th:href="@{/mainPage}">
                     <img src="../img/home.png" alt="Home" class="nav-icon" style="background: #00BA8D;">
                     <p class="nav-text">메인홈</p>
-                </div>
-                <div class="nav-item">
+                </a>
+            </div>
+            <div class="nav-item">
+                <a th:href="@{/popularPosts}">
                     <img src="../img/dvr.png" alt="DVR" class="nav-icon" style="background: rgb(190, 190, 190);">
                     <p class="nav-text">게시판</p>
-                </div>
-                <div class="nav-item">
+                </a>
+            </div>
+            <div class="nav-item">
+                <a th:href="@{/WritingPage}">
                     <img src="../img/create.png" alt="Create" class="nav-icon" style="background: rgb(190, 190, 190);">
                     <p class="nav-text">글쓰기</p>
-                </div>
-                <div class="nav-item">
+                </a>
+            </div>
+            <div class="nav-item">
+                <a th:href="@{/selfDiagnosis}">
                     <img src="../img/check.png" alt="Check" class="nav-icon" style="background: rgb(190, 190, 190);">
                     <p class="nav-text">자가진단</p>
-                </div>
-                <div class="nav-item">
+                </a>
+            </div>
+            <div class="nav-item">
+                <a th:href="@{/mypage}">
                     <img src="../img/person.png" alt="Person" class="nav-icon" style="background: rgb(190, 190, 190);">
                     <p class="nav-text">마이페이지</p>
-                </div>
-            </div>
-        </div>
-        <div class="main-container">
-            <div class="main-screen">
-                <img class="back" src="../img/backimg.svg">
-                <div class="profile">
-                    <div class="profile-pic"></div>
-                    <p class="username">사용자1</p>
-                </div>
-                <div class="divider"></div>
-                <div class="post-container">
-                    <div class="post-content">
-                        <p class="post-title">직장생활 꿀팁 있을까요?</p>
-                    <div class="divider2"></div>
-                        <p class="post-body">안녕하세요. 제가 입사 준비를 하고 있습니다. 
-                        제가 아직 제대로 된 사회생활을 해본 적이 없어서 걱정됩니다.
-                        혹시 직장에 들어가서 챙길 수 있는 꿀팁이 있을까요?</p>
-                    </div>
-                    <div class="divider3"></div>
-                    <div class="post-footer">
-                        <div class="footer-item">
-                            <img src="../img/timer.png" alt="Time" class="footer-icon">
-                            <p class="footer-text">1일전</p>
-                        </div>
-                        <div class="footer-item">
-                            <img src="../img/heart.png" alt="Likes" class="footer-icon">
-                            <p class="footer-text">128</p>
-                        </div>
-                        <div class="footer-item">
-                            <img src="../img/answer.png" alt="Comments" class="footer-icon">
-                            <p class="footer-text">45</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="vote-container">
-                    <div class="vote-item good">
-                        <img src="../img/good.png" alt="Good" class="vote-icon">
-                        <p class="vote-text">Good</p>
-                        <p class="vote-count">148</p>
-                    </div>
-                    <div class="vote-item bad">
-                        <img src="../img/bad.png" alt="Bad" class="vote-icon2">
-                        <p class="vote-text">Bad</p>
-                        <p class="vote-count">32</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-header">
-                        <p class="section-title">받은 조언들</p>
-                        <p class="section-edit">편집</p>
-                        <p class="section-more">더보기</p>
-                        <p class="section-text">인상깊은 조언을 눌러 보관하세요</p>
-                    </div>
-                    <div class="checkbox-list">
-                        <label class="checkbox-item">
-                            <input type="checkbox">
-                            <span class="checkbox-custom"></span>
-                            <span class="checkbox-label">상대방의 말에 귀를 기울여보세요.</span>
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox">
-                            <span class="checkbox-custom"></span>
-                            <span class="checkbox-label">이 상황에서는 양보하는 것이 옳은 행동입니다.</span>
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox">
-                            <span class="checkbox-custom"></span>
-                            <span class="checkbox-label">당신의 잘못은 아니지만, 조심해야 할 것 같습니다.</span>
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox">
-                            <span class="checkbox-custom"></span>
-                            <span class="checkbox-label">에어컨을 끄고 나가셔야합니다.</span>
-                        </label>
-                    </div>
-                </div>
-
+                </a>
             </div>
         </div>
     </div>
+    <div class="main-container">
+        <div class="main-screen">
+
+            <a th:href="@{/popularPosts}">
+                <img class="back" src="../img/backimg.svg" alt="Back">
+            </a>
+
+            <div class="profile">
+                <div class="profile-pic"></div>
+                <p class="username" th:if="${question.author != null}" th:text="${question.author.loginId}"></p>
+            </div>
+            <div class="divider"></div>
+            <div class="post-container">
+                <div class="post-content">
+                    <p class="post-title" th:text="${question.subject}"></p>
+                    <div class="divider2"></div>
+                    <p class="post-body" th:text="${question.content}"></p>
+                </div>
+                <div class="divider3"></div>
+                <div class="post-footer">
+                    <div class="footer-item">
+                        <img src="../img/timer.png" alt="Time" class="footer-icon">
+                        <p class="footer-text">1일전</p>
+                    </div>
+                    <div class="footer-item">
+                        <img src="../img/heart.png" alt="Likes" class="footer-icon">
+                        <p class="footer-text" th:text="${#lists.size(question.voter)}"></p>
+                    </div>
+                    <div class="footer-item">
+                        <img src="../img/answer.png" alt="Comments" class="footer-icon">
+                        <p class="footer-text">45</p>
+                    </div>
+                </div>
+            </div>
+            <div class="vote-container">
+                <div class="vote-item good">
+                    <a th:href="@{|/question/vote/${question.id}|}">
+                    <img src="../img/good.png" alt="Good" class="vote-icon">
+
+                        <p class="vote-text">Good</p>
+                        <p class="vote-count" th:text="${#lists.size(question.voter)}"></p>
+                    </a>
+                </div>
+                <div class="vote-item bad">
+                    <a th:href="@{|/question/downvote/${question.id}|}">
+                    <img src="../img/bad.png" alt="Bad" class="vote-icon2">
+
+                        <p class="vote-text">Bad</p>
+                        <p class="vote-count" th:text="${#lists.size(question.nonVoter)}"></p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <p class="section-title">받은 조언들</p>
+                    <p class="section-edit">편집</p>
+                    <p class="section-more">더보기</p>
+                    <p class="section-text">인상깊은 조언을 눌러 보관하세요</p>
+                </div>
+                <div class="checkbox-list">
+                    <label class="checkbox-item" th:each="answer : ${question.answerList}">
+                        <input type="checkbox">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label" th:text="${answer.content}"></span>
+                    </label>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
 </body>
+<script layout:fragment="script" type='text/javascript'>
+    const delete_elements = document.getElementsByClassName("delete");
+    Array.from(delete_elements).forEach(function (element) {
+        element.addEventListener('click', function () {
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+    const recommend_elements = document.getElementsByClassName("recommend");
+    Array.from(recommend_elements).forEach(function (element) {
+        element.addEventListener('click', function () {
+            if (confirm("정말로 추천하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+    //비추천
+    const downvote_elements = document.getElementsByClassName("downvote");
+    Array.from(downvote_elements).forEach(function (element) {
+        element.addEventListener('click', function () {
+            if (confirm("정말로 비추천하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+</script>
 </html>

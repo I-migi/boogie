@@ -5,8 +5,6 @@ body {
     background: #d0d0d0;
     position: relative;
     display: flex;
-    width: 100vw;
-    height: 100vh;
 }
 
 
@@ -195,7 +193,11 @@ button.post-btn:hover {
     letter-spacing: -0.04em;
     cursor: pointer;
     transition: all 0.3 ease;
+    display: flex; /* 추가 */
+    align-items: center; /* 추가 */
+    justify-content: center; /* 추가 */
 }
+
 
 .thinking-woman {
     width: 269px;
@@ -315,28 +317,19 @@ button.post-btn:hover {
 .hospital1 {
     display: flex;
     align-items: center;
-    position:absolute;
+    position:relative;
     top: 200px;
-    left: 40px;
     cursor: pointer;
     transition: all 0.3 ease;
-}
-
-.hospital2 {
-    display: flex;
-    align-items: center;
-    position:absolute;
-    top: 200px;
-    left: 450px;
-    cursor: pointer;
-    transition: all 0.3 ease;
+    display: flex; /* 추가 */
+    align-items: center; /* 추가 */
+    justify-content: center; /* 추가 */
 }
 
 .hospital-img {
     width: 350px;
     height: 250px;
     border: 0.72px solid #C4C4C4;
-    margin-right: 20px;
 }
 
 .more-btn {

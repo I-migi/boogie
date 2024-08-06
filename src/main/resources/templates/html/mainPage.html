@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boog!e</title>
-    <link rel="stylesheet" th:href="@{/css/mainPage.css}">
+    <link rel="stylesheet" href="../css/mainPage.css">
 </head>
 <body>
 
@@ -51,51 +51,55 @@
             <p class="my-temperature">나의 부기온도</p>
             <p class="temperature">65℃</p>
             <div class="temperature-bar"></div>
-        </div>
-        <button class="post-btn" type="button" th:onclick="|window.location.href='@{/WriteAdvise}'|">글쓰기/조언하기</button>
-    </div>
-    <div class="gray-space"></div>
-    <div class="box box2">
-        <p class="hoxi">혹시 나도 경계성 지능인?<br>전문의와 함께 상담해보세요.</p>
-        <a th:href="@{/survey}" class="self-diagnosis-btn" type="button">자가진단 실시하기</a>
-        <img src="../img/thinking_woman.png" alt="Thinking Woman" class="thinking-woman">
-    </div>
-    <div class="gray-space"></div>
-    <div class="box box3">
-        <p class="hot-post">실시간 인기글</p>
-        <p class="sub-text1">가장 HOT한 게시글들을 모았어요</p>
-        <div class="post-list">
-            <div th:each="question, iterStat : ${top3Questions}">
-            <div class="post-item">
-                <div class="rank" th:text="${iterStat.index + 1}"></div>
-                <a th:href="@{|/OpenPostPage2/${question.id}|}" th:text="${question.subject}" class="post-title"></a>
-<!--                <p class="post-title">제 잘못인지 궁금합니다.</p>-->
-<!--            </div>-->
-<!--            <div class="post-item">-->
-<!--                <div class="rank">2</div>-->
-<!--                <p class="post-title">이런 상황에선 어떻게 해야하나요?</p>-->
-<!--            </div>-->
-<!--            <div class="post-item">-->
-<!--                <div class="rank">3</div>-->
-<!--                <p class="post-title">여러분들의 생각을 알려주세요.</p>-->
 
+        </div>
+
+    <div class="main-container">
+        <div class="box box1">
+            <img src="../img/mainPageIMG/boogle.png" alt="Boog!e" class="logo">
+            <p class="greeting">안녕하세요 성균님!<br>오늘은 어떤 일이 있었나요?</p>
+            <div class="mini-box">
+                <p class="my-temperature">나의 부기온도</p>
+                <p class="temperature">65℃</p>
+                <div class="temperature-bar"></div>
             </div>
+            <button class="post-btn" type="button">글쓰기/조언하기</button>
+        </div>  
+        <div class="gray-space"></div>
+        <div class="box box2">
+            <p class="hoxi">혹시 나도 경계성 지능인?<br>전문의와 함께 상담해보세요.</p>
+            <button class="self-diagnosis-btn" type="button">자가진단 실시하기</button>
+            <img src="../img/mainPageIMG/thinking_woman.png" alt="Thinking Woman" class="thinking-woman">
+        </div>
+        <div class="gray-space"></div>
+        <div class="box box3">
+            <p class="hot-post">실시간 인기글</p>
+            <p class="sub-text1">가장 HOT한 게시글들을 모았어요</p>
+            <div class="post-list">
+                <div class="post-item">
+                    <div class="rank">1</div>
+                    <p class="post-title">제 잘못인지 궁금합니다.</p>
+                </div>
+                <div class="post-item">
+                    <div class="rank">2</div>
+                    <p class="post-title">이런 상황에선 어떻게 해야하나요?</p>
+                </div>
+                <div class="post-item">
+                    <div class="rank">3</div>
+                    <p class="post-title">여러분들의 생각을 알려주세요.</p>
+                </div>
             </div>
+            <p class="more-btn">더보기</p>
         </div>
-        <p class="more-btn">더보기</p>
+        <div class="gray-space"></div>
+        <div class="box box4">
+            <p class="sub-title">가까운 센터/병원</p>
+            <p class="sub-text2">내 위치에서 가장 가까운 센터와 병원을 알려드려요</p>
+            <div class="hospital1">
+                <img src="../img/mainPageIMG/mental_health_center.png" alt="Mental Health Center" class="hospital-img">
+            </div>
+            <p class="more-btn">더보기</p>
+        </div>
     </div>
-    <div class="gray-space"></div>
-    <div class="box box4">
-        <p class="sub-title">가까운 센터/병원</p>
-        <p class="sub-text2">내 위치에서 가장 가까운 센터와 병원을 알려드려요</p>
-        <div class="hospital1">
-            <img src="../img/mental_health_center.png" alt="Mental Health Center" class="hospital-img">
-        </div>
-        <div class="hospital2">
-            <img src="../img/boramae_hospital.png" alt="Boramae Hospital" class="hospital-img">
-        </div>
-        <p class="more-btn">더보기</p>
-    </div>
-</div>
 </body>
 </html>
